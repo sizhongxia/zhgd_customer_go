@@ -15,6 +15,11 @@ type UserInfo struct {
 	UserName string `json:"userName"`
 }
 
+type ErrorResult struct {
+	Code    float64 `json:"code"`
+	Message string  `json:"message"`
+}
+
 type WorktypeParam struct {
 	BaseToken
 

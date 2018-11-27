@@ -5,6 +5,7 @@ import (
 	"zhgd/utils"
 
 	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/validation"
 )
 
 type WorktypeController struct {
@@ -42,10 +43,18 @@ func (this *WorktypeController) WorktypeData() {
 func (this *WorktypeController) WorktypeSave() {
 	param := params.WorktypeParam{}
 	param.Name = this.GetString("name")
-	param.Uid = this.GetSession("cutoken").(string)
-	param.Pid = this.GetSession("cptoken").(string)
-	_, res := utils.FetchPost(&param, "worktype/save")
-	this.Data["json"] = res
+	valid := validation.Validation{}
+	if v := valid.Required(param.Name, "name"); !v.Ok {
+		errInfo := params.ErrorResult{}
+		errInfo.Code = -1
+		errInfo.Message = "请输入工种名称"
+		this.Data["json"] = errInfo
+	} else {
+		param.Uid = this.GetSession("cutoken").(string)
+		param.Pid = this.GetSession("cptoken").(string)
+		_, res := utils.FetchPost(&param, "worktype/save")
+		this.Data["json"] = res
+	}
 	this.ServeJSON()
 }
 
@@ -63,9 +72,17 @@ func (this *WorktypeController) WorktypeUpdate() {
 	param := params.WorktypeParam{}
 	param.Id = this.GetString("id")
 	param.Name = this.GetString("name")
-	param.Uid = this.GetSession("cutoken").(string)
-	param.Pid = this.GetSession("cptoken").(string)
-	_, res := utils.FetchPost(&param, "worktype/update")
-	this.Data["json"] = res
+	valid := validation.Validation{}
+	if v := valid.Required(param.Name, "name"); !v.Ok {
+		errInfo := params.ErrorResult{}
+		errInfo.Code = -1
+		errInfo.Message = "请输入工种名称"
+		this.Data["json"] = errInfo
+	} else {
+		param.Uid = this.GetSession("cutoken").(string)
+		param.Pid = this.GetSession("cptoken").(string)
+		_, res := utils.FetchPost(&param, "worktype/update")
+		this.Data["json"] = res
+	}
 	this.ServeJSON()
 }
