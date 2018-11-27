@@ -8,10 +8,10 @@ type ManageController struct {
 	beego.Controller
 }
 
-func (c *ManageController) Index() {
-	c.TplName = "manage/index.tpl"
+func (this *ManageController) Index() {
+	this.TplName = "manage/index.tpl"
 }
 
-func (c *ManageController) Memorabilia() {
-	c.TplName = "manage/memorabilia.tpl"
+func (this *ManageController) Memorabilia() {
+	this.TplName = "manage/memorabilia.tpl"
 }
