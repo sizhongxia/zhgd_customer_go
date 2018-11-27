@@ -21,7 +21,7 @@
 </div>
 
 <script type="text/javascript">
-    layui.use(['layer', 'element', 'admin', 'util', 'laytpl', 'table', 'form', 'treetable'], function() {
+    layui.use(['layer', 'element', 'admin', 'util', 'laytpl', 'table', 'form', 'carousel', 'treetable'], function() {
 	    var layer = layui.layer;
 	    var admin = layui.admin;
 
@@ -30,7 +30,9 @@
             util = layui.util,
             laytpl = layui.laytpl,
             form = layui.form,
-            table = layui.table;
+            table = layui.table,
+            device = layui.device,
+            carousel = layui.carousel;
 
 		var treetable = layui.treetable;
 
@@ -51,6 +53,16 @@
                 laytpl(result).render({}, function(html){
                     view.innerHTML = html;
                     element.render()
+                    carousel.render({
+                        elem: '.layui-carousel',
+                        width: '100%',
+                        height: '60px',
+                        arrow: 'none',
+                        autoplay: true,
+                        trigger: device.ios || device.android ? 'click' : 'hover',
+                        anim: 'fade'
+                    });
+
                 })
             } else if(layid === "account") {
                 laytpl(result).render({}, function(html){
@@ -140,7 +152,6 @@
                                 if(layEvent === 'edit'){ //编辑
                                     admin.popupCenter({
                                         title : '修改分包商班组',
-                                        area : ['580px', '360px'],
                                         path : '/manage/orgstructure/group/edit?id=' + data.id,
                                         finish : function() {
                                             if(res.code === 200) {
@@ -202,7 +213,6 @@
                                 } else if(layEvent === 'edit'){ //编辑
                                     admin.popupCenter({
                                         title : '修改工种',
-                                        area : ['480px', '200px'],
                                         path : '/manage/worktype/edit?id=' + data.id,
                                         finish : function() {
                                             if(res.code === 200) {
@@ -218,7 +228,6 @@
                             $(document).on('click','#create_worktype_btn',function(){
                                 admin.popupCenter({
                                     title : '新增工种',
-                                    area : ['480px', '200px'],
                                     path : '/manage/worktype/add',
                                     finish : function() {
                                         init();

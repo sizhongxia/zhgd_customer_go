@@ -45,7 +45,6 @@ func init() {
 	beego.Router("/manage/index", &ManageController{}, "*:Index")
 
 	beego.Router("/manage/project", &ProjectController{}, "*:Index")
-	beego.Router("/api/project/detail", &ProjectController{}, "*:ProjectDetail")
 
 	beego.Router("/manage/account", &AccountController{}, "*:Index")
 	beego.Router("/manage/memorabilia", &MemorabiliaController{}, "*:Index")

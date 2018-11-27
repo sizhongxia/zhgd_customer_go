@@ -11,7 +11,7 @@
                 <tr>
                     <th lay-data="{field:'id', hide: true}"></th>
                     <th lay-data="{field:'type', hide: true}"></th>
-                    <th lay-data="{field:'name'}">名称</th>
+                    <th lay-data="{field:'name', width:200}">名称</th>
                     <th lay-data="{field:'typeName', width:100}">系统</th>
                     <th lay-data="{field:'option',width:160, align:'center'}"></th>
                 </tr> 

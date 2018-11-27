@@ -7,13 +7,10 @@
 </blockquote>
 <form class="layui-form" style="text-align: center;">
     <input type="hidden" name="companyId" value="<<< .data.data.id >>>"/>
-    <div class="layui-inline">
-        <div class="layui-input-inline" style="width: 439px;">
-            <input type="text" name="name" placeholder="输入新班组名称" autocomplete="off" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-inline">
-        <button class="layui-btn" lay-submit lay-filter="laborsubcontractorgroupsform" style="height: 36px;">新增</button>
+    <div class="layui-inline" style="width: 100%;">
+        <div class="layui-input-inline" style="width: 100%;">
+            <input type="text" name="name" placeholder="输入新班组名称" autocomplete="off" class="layui-input" style="display: inline;margin-right: -86px;">
+        <button class="layui-btn" lay-submit lay-filter="laborsubcontractorgroupsform" style="width: 80px;margin-top: -2px;">新增</button>
     </div>
 </form>
 
@@ -63,7 +60,7 @@ layui.use(['layer', 'element', 'form', 'admin', 'table'], function(){
         var data = obj.data;
         admin.req("/api/orgstructure/group/update", {id: data.id, companyId: data.companyId, name: obj.value}, function(res) {
             if(res.code === 200) {
-                admin.finishPopupCenter();
+                admin.finishPopupCenter(true);
             } else {
                 layer.msg(res.message);
             }

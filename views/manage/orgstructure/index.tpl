@@ -2,7 +2,7 @@
     <div class="layui-col-xs12">
         <div class="layui-card">
             <div class="layui-card-header">
-                总包(施工)单位部门岗位设置
+                总包单位部门岗位
                 <button id="create_department_btn" class="layui-btn layui-btn-radius layui-btn-primary" style="float:right;margin:4px;">新增部门</button>
             </div>
             <div class="layui-card-body">
@@ -13,7 +13,7 @@
     <div class="layui-col-xs12">
         <div class="layui-card">
             <div class="layui-card-header">
-                分包单位班组设置
+                分包单位班组
             </div>
             <div class="layui-card-body">
 

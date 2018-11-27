@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="/static/libs/layui/css/layui.css?v=2.4.3"/>
     <link rel="stylesheet" href="/static/css/admin.css"/>
+    <link rel="stylesheet" href="/static/css/console.css"/>
     <link rel="stylesheet" href="/static/module/formSelects/formSelects-v4.css"/>
     <style type="text/css">
     	.layui-layer-move {z-index: 0 !important;}
