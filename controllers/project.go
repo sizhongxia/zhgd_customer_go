@@ -3,10 +3,8 @@ package controllers
 import (
 	"zhgd/params"
 	"zhgd/utils"
-	"time"
 
 	"github.com/astaxie/beego"
-	"github.com/astaxie/beego/cache"
 )
 
 type ProjectController struct {
@@ -15,20 +13,17 @@ type ProjectController struct {
 
 // 项目信息
 func (this *ProjectController) Index() {
-
 	token := params.BaseToken{}
 	token.Uid = this.GetSession("cutoken").(string)
 	token.Pid = this.GetSession("cptoken").(string)
 
-	cacheKey := ('Project' + token.Pid)
+	cacheKey := "project:detail:" + token.Pid
 
-	bm, bmerr := cache.NewCache("memory", `{"interval":60}`)
-	if bmerr == nil {
-		if bm.IsExist(cacheKey) {
-			this.Data["project"] = bm.Get(cacheKey)
-			this.TplName = "manage/project/index.tpl"
-			return;
-		}
+	cval := utils.GetCache(cacheKey)
+	if cval != nil {
+		this.Data["project"] = cval
+		this.TplName = "manage/project/index.tpl"
+		return
 	}
 
 	err, res := utils.FetchPost(&token, "project/detail")
@@ -44,10 +39,7 @@ func (this *ProjectController) Index() {
 		this.Abort("404")
 	}
 	rsd := rsa["data"].(map[string]interface{})
-
-	if bmerr == nil {
-		bm.Put(cacheKey, rsd, 10*time.Second)
-	}
+	utils.SetCache(cacheKey, rsd, 60*5)
 
 	this.Data["project"] = rsd
 	this.TplName = "manage/project/index.tpl"

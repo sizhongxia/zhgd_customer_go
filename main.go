@@ -23,5 +23,8 @@ var sessionCheckFilter = func(ctx *context.Context) {
 func main() {
 	beego.ErrorController(&controllers.ErrorController{})
 	beego.InsertFilter("/*", beego.BeforeRouter, sessionCheckFilter)
+
+	// cache.NewCache("memory", `{"interval":60}`)
+
 	beego.Run()
 }
