@@ -19,7 +19,7 @@
         <tr>
             <th lay-data="{field:'id', hide: true}"></th>
             <th lay-data="{field:'companyId', hide: true}"></th>
-            <th lay-data="{field:'name', edit:'text'}">名称 (注：点击名称可进行修改)</th>
+            <th lay-data="{field:'name', edit:'text', align:'left'}">名称 (注：点击名称可进行修改)</th>
             <th lay-data="{field:'option',width:90, align:'center'}"></th>
         </tr> 
     </thead>

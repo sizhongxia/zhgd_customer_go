@@ -81,10 +81,10 @@ layui.define(['config', 'layer'], function (exports) {
             
             var width = '100%';
             if (document.body.clientWidth > 750) {
-            	width = '520px';
+            	width = '680px';
             }
             
-            param.area = param.area ? param.area : [width, '328px'];
+            param.area = param.area ? param.area : [width, '420.24px'];
             param.offset = param.offset ? param.offset : '120px';
             param.resize ? param.resize : false;
             param.shade ? param.shade : .2;

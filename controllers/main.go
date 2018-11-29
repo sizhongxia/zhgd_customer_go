@@ -65,6 +65,7 @@ func (this *MainController) LoginAction() {
 	this.SetSession("cutoken", rsd["uid"].(string))
 	this.SetSession("cuname", rsd["uname"].(string))
 	this.SetSession("cptoken", rsd["pid"].(string))
+	this.SetSession("uaccount", rsd["uaccount"].(string))
 
 	this.Redirect("/console", 302)
 }

@@ -65,7 +65,8 @@
         base: '/static/module/'
     }).extend({
         treetable: 'treetable-lay/treetable',
-        inputTags: 'inputTags/inputTags'
+        inputTags: 'inputTags/inputTags',
+        ckplayer: 'ckplayer/ckplayer'
     }).use(['config', 'index', 'element'], function () {
         var config = layui.config;
         var index = layui.index;

@@ -48,8 +48,10 @@ func init() {
 
 	beego.Router("/manage/account", &AccountController{}, "*:Index")
 	beego.Router("/manage/memorabilia", &MemorabiliaController{}, "*:Index")
-	beego.Router("/manage/personnel", &PersonnelController{}, "*:Index")
 	beego.Router("/manage/orgstructure", &OrgstructureController{}, "*:Index")
+
+	beego.Router("/manage/personnel", &PersonnelController{}, "*:Index")
+	beego.Router("/manage/personnel/add", &PersonnelController{}, "*:AddPersonnel")
 
 	beego.Router("/manage/orgstructure/group/edit", &OrgstructureController{}, "*:EditGroup")
 	beego.Router("/api/orgstructure/group/save", &OrgstructureController{}, "*:GroupSave")

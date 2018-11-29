@@ -43,3 +43,9 @@ type OrgDepartmentParam struct {
 	ParentUuid string   `json:"parentUuid"`
 	Posts      []string `json:"posts"`
 }
+
+type DictionaryParam struct {
+	BaseToken
+
+	Type         string   `json:"type"`
+}

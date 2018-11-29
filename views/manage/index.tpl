@@ -79,6 +79,16 @@
                     view.innerHTML = html;
                     element.render()
                 })
+
+                $(document).on('click','#create_personnel_btn',function(){
+                    admin.popupCenter({
+                        title : '新增人员',
+                        path : '/manage/personnel/add',
+                        finish : function() {
+                        }
+                    });
+                });
+
             } else if(layid === "orgstructure") {
 
                 function init() {
