@@ -45,11 +45,40 @@ func (this *ProjectController) Index() {
 	this.TplName = "manage/project/index.tpl"
 }
 
-// func (this *ProjectController) ProjectDetail() {
-// 	token := params.BaseToken{}
-// 	token.Uid = this.GetSession("cutoken").(string)
-// 	token.Pid = this.GetSession("cptoken").(string)
-// 	_, res := utils.FetchPost(&token, "project/detail")
-// 	this.Data["json"] = res
-// 	this.ServeJSON()
-// }
+func (this *ProjectController) ProjectLaborsubcontractors() {
+	token := params.BaseToken{}
+	token.Uid = this.GetSession("cutoken").(string)
+	token.Pid = this.GetSession("cptoken").(string)
+	_, res := utils.FetchPost(&token, "project/laborsubcontractors")
+	this.Data["json"] = res
+	this.ServeJSON()
+}
+
+func (this *ProjectController) ProjectConstructions() {
+	token := params.BaseToken{}
+	token.Uid = this.GetSession("cutoken").(string)
+	token.Pid = this.GetSession("cptoken").(string)
+	_, res := utils.FetchPost(&token, "project/constructions")
+	this.Data["json"] = res
+	this.ServeJSON()
+}
+
+func (this *ProjectController) ProjectPosts() {
+	param := params.PostParam{}
+	param.DeptUuid = this.GetString("deptUuid")
+	param.Uid = this.GetSession("cutoken").(string)
+	param.Pid = this.GetSession("cptoken").(string)
+	_, res := utils.FetchPost(&param, "project/posts")
+	this.Data["json"] = res
+	this.ServeJSON()
+}
+
+func (this *ProjectController) ProjectGroups() {
+	param := params.GroupParam{}
+	param.CompanyId = this.GetString("companyId")
+	param.Uid = this.GetSession("cutoken").(string)
+	param.Pid = this.GetSession("cptoken").(string)
+	_, res := utils.FetchPost(&param, "project/groups")
+	this.Data["json"] = res
+	this.ServeJSON()
+}

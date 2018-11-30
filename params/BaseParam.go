@@ -47,5 +47,48 @@ type OrgDepartmentParam struct {
 type DictionaryParam struct {
 	BaseToken
 
-	Type         string   `json:"type"`
+	Type string `json:"type"`
+}
+
+type AreaParam struct {
+	BaseToken
+
+	Pcode string `json:"pcode"`
+}
+
+type PostParam struct {
+	BaseToken
+
+	DeptUuid string `json:"deptUuid"`
+}
+
+type GroupParam struct {
+	BaseToken
+
+	CompanyId string `json:"companyId"`
+}
+
+type /*  */ PersonnelParam struct {
+	BaseToken
+
+	Name          string `json:"name"`
+	Code          string `json:"code"`
+	Sex           string `json:"sex"`
+	Birthday      string `json:"birthday"`
+	Age           string `json:"age"`
+	Birthplace1   string `json:"birthplace1"`
+	Birthplace2   string `json:"birthplace2"`
+	Birthplace3   string `json:"birthplace3"`
+	Photo         string `json:"photo"`
+	Nation        string `json:"nation"`
+	HomeAddress   string `json:"homeaddress"`
+	Telephone     string `json:"telephone"`
+	PersonnelType string `json:"type"`
+	ProUuid       string `json:"prouuid"`
+	CompanyUuid   string `json:"companyuuid"`
+	GroupUuid     string `json:"groupuuid"`
+	IsGroupLeader string `json:"isgroupleader"`
+	WorkType      string `json:"worktype"`
+	DeptUuid      string `json:"deptuuid"`
+	Post          string `json:"post"`
 }

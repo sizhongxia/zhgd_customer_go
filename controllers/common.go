@@ -73,3 +73,13 @@ func (this *CommonController) GreenConstruction() {
 func (this *CommonController) SmarthardWare() {
 	this.TplName = "menu/smarthardware.tpl"
 }
+
+func (this *CommonController) AreaData() {
+	areaParam := params.AreaParam{}
+	areaParam.Pcode = this.GetString("pcode")
+	areaParam.Uid = this.GetSession("cutoken").(string)
+	areaParam.Pid = this.GetSession("cptoken").(string)
+	_, res := utils.FetchPost(&areaParam, "area")
+	this.Data["json"] = res
+	this.ServeJSON()
+}

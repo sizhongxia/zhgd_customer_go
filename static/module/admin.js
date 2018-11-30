@@ -81,13 +81,13 @@ layui.define(['config', 'layer'], function (exports) {
             
             var width = '100%';
             if (document.body.clientWidth > 750) {
-            	width = '680px';
+            	width = '720px';
             }
             
-            param.area = param.area ? param.area : [width, '420.24px'];
+            param.area = param.area ? param.area : [width, '444.96px'];
             param.offset = param.offset ? param.offset : '120px';
-            param.resize ? param.resize : false;
-            param.shade ? param.shade : .2;
+            param.resize = param.resize ? param.resize : false;
+            param.shade = param.shade ? param.shade : .4;
             param.btnAlign = 'c';
             param.success = function (layero, index) {
                 sCallBack ? sCallBack(layero, index) : '';

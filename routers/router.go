@@ -29,6 +29,8 @@ func init() {
 
 	beego.Router("/console", &CommonController{}, "*:Main")
 
+	beego.Router("/api/area", &CommonController{}, "*:AreaData")
+
 	// 公共
 	beego.Router("/console/header", &CommonController{}, "*:Header")
 	beego.Router("/console/sidenav", &CommonController{}, "*:SideNav")
@@ -45,6 +47,10 @@ func init() {
 	beego.Router("/manage/index", &ManageController{}, "*:Index")
 
 	beego.Router("/manage/project", &ProjectController{}, "*:Index")
+	beego.Router("/api/project/laborsubcontractors", &ProjectController{}, "*:ProjectLaborsubcontractors")
+	beego.Router("/api/project/constructions", &ProjectController{}, "*:ProjectConstructions")
+	beego.Router("/api/project/posts", &ProjectController{}, "*:ProjectPosts")
+	beego.Router("/api/project/groups", &ProjectController{}, "*:ProjectGroups")
 
 	beego.Router("/manage/account", &AccountController{}, "*:Index")
 	beego.Router("/manage/memorabilia", &MemorabiliaController{}, "*:Index")
@@ -52,6 +58,7 @@ func init() {
 
 	beego.Router("/manage/personnel", &PersonnelController{}, "*:Index")
 	beego.Router("/manage/personnel/add", &PersonnelController{}, "*:AddPersonnel")
+	beego.Router("/api/personnel/save", &PersonnelController{}, "*:PersonnelSave")
 
 	beego.Router("/manage/orgstructure/group/edit", &OrgstructureController{}, "*:EditGroup")
 	beego.Router("/api/orgstructure/group/save", &OrgstructureController{}, "*:GroupSave")
