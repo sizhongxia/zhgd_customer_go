@@ -44,7 +44,7 @@
                                         {{#  } }} 
                                     </td>
                                     <td>
-                                        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+                                        <a class="layui-btn layui-btn-xs" lay-event="edit">新增/修改班组</a>
                                     </td>
                                 </tr>
                             {{#  }); }}

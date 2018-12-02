@@ -3,8 +3,11 @@ package controllers
 import (
 	"zhgd/params"
 	"zhgd/utils"
+	"path"
 
+	"gopkg.in/mgo.v2/bson"
 	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/logs"
 )
 
 type MainController struct {
@@ -15,7 +18,6 @@ func (this *MainController) Index() {
 	// this.TplName = "index.tpl"
 	this.Redirect("/console", 302)
 }
-
 func (this *MainController) Login() {
 	cutoken := this.GetSession("cutoken")
 	if cutoken != nil {
@@ -95,4 +97,37 @@ func (this *MainController) Logout() {
 	}
 	this.Redirect("/login", 302)
 	return
+}
+
+// 上传用户头像
+func (this *MainController) UploadPersonnelPhoto() {
+	file, information, err := this.GetFile("file")
+	er := params.ErrorResult{}
+    if err != nil {
+        logs.Error(err)
+		er.Code = -1
+		er.Message = "上传文件失败"
+		this.Data["json"] = er
+		this.ServeJSON()
+		return;
+    }
+	defer file.Close()
+	fileName := information.Filename
+	logs.Info(fileName)
+
+	fileKey := bson.NewObjectId().Hex()
+	savePath := path.Join("static/upload",fileKey)
+	// 存储本地
+	this.SaveToFile("file", savePath)
+	// 上传至七牛云
+	utils.Upload(fileKey, savePath)
+	param := params.PersonnelParam{}
+	param.Uid = this.GetSession("cutoken").(string)
+	param.Pid = this.GetSession("cptoken").(string)
+	param.Id = this.GetString("id")
+	param.Photo = fileKey
+	utils.FetchPost(&param, "personnel/updatePhoto")
+	er.Code = 200
+	this.Data["json"] = er
+	this.ServeJSON()
 }

@@ -46,6 +46,7 @@ func FetchPost(param interface{}, url string) (error, resu interface{}) {
 	}
 
 	if resp.StatusCode != http.StatusOK {
+		logs.Error(fmt.Sprintf("%d", resp.StatusCode))
 		return errors.New(fmt.Sprintf("%d", resp.StatusCode)), nil
 	}
 

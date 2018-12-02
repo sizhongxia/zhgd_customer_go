@@ -75,20 +75,79 @@
                     element.render()
                 })
             } else if(layid === "personnel") {
-                laytpl(result).render({}, function(html){
-                    view.innerHTML = html;
-                    element.render()
-                })
+                
+                function init() {
+                    admin.req("/api/personnel/data", {}, function(res) {
+                        laytpl(result).render(res, function(html){
+                            view.innerHTML = html;
+                            element.render()
 
-                $(document).on('click','#create_personnel_btn',function(){
-                    admin.popupCenter({
-                        title : '新增人员',
-                        path : '/manage/personnel/add',
-                        finish : function() {
-                        }
-                    });
-                });
+                            table.init('personneltable', {
+                                page: {
+                                    limit: 20
+                                }
+                            });
 
+                            table.on('tool(personneltable)', function(obj){
+                                var data = obj.data;
+                                var layEvent = obj.event;
+                                if(layEvent === 'edit'){ //编辑
+                                    admin.popupCenter({
+                                        title : '修改人员基础信息',
+                                        path : '/manage/personnel/edit?id=' + data.id,
+                                        finish : function() {
+                                            init();
+                                        }
+                                    });
+                                } else if (layEvent === 'editBirthPlace') {
+                                    admin.popupCenter({
+                                        title : '变更人员籍贯信息',
+                                        path : '/manage/personnel/editBirthPlace?id=' + data.id,
+                                        finish : function() {
+                                        }
+                                    });
+                                } else if (layEvent === 'personnelPhoto') {
+                                    admin.popupCenter({
+                                        title : '人员头像',
+                                        path : '/manage/personnel/photo?id=' + data.id,
+                                        finish : function() {
+                                        }
+                                    });
+                                } else if (layEvent === 'detail') {
+                                    admin.popupCenter({
+                                        title : '详情',
+                                        path : '/manage/personnel/detail?id=' + data.id,
+                                        finish : function() {
+                                        }
+                                    });
+                                } else if (layEvent === 'delete') {
+                                    layer.confirm('删除是否要删除当前用户身份？', {title:'删除提示'}, function(index){
+                                        layer.close(index);
+                                        admin.req("/api/personnel/delete/identity", {id: data.id}, function(res) {
+                                            if(res.code === 200) {
+                                                init();
+                                            } else {
+                                                layer.msg(res.message);
+                                            }
+                                        }, "POST");
+                                    });
+                                }
+                            });
+
+                            $(document).on('click','#create_personnel_btn',function(){
+                                admin.popupCenter({
+                                    title : '新增人员',
+                                    path : '/manage/personnel/add',
+                                    finish : function() {
+                                        init();
+                                    }
+                                });
+                            });
+
+                        })
+                    }, "POST");
+                }
+                init();
             } else if(layid === "orgstructure") {
 
                 function init() {

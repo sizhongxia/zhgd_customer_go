@@ -17,6 +17,7 @@ func init() {
 	beego.Router("/loginaction", &MainController{}, "POST:LoginAction")
 	beego.Router("/api/user/info", &MainController{}, "POST:UserInfo")
 	beego.Router("/api/user/menus", &MainController{}, "POST:UserMenus")
+	beego.Router("/upload/personnel/photo", &MainController{}, "POST:UploadPersonnelPhoto")
 
 	// 工种管理
 	beego.Router("/manage/worktype", &WorktypeController{}, "*:Worktype")
@@ -58,7 +59,15 @@ func init() {
 
 	beego.Router("/manage/personnel", &PersonnelController{}, "*:Index")
 	beego.Router("/manage/personnel/add", &PersonnelController{}, "*:AddPersonnel")
+	beego.Router("/manage/personnel/edit", &PersonnelController{}, "*:EditPersonnel")
+	beego.Router("/manage/personnel/editBirthPlace", &PersonnelController{}, "*:EditBirthPlacePersonnel")
+	beego.Router("/manage/personnel/detail", &PersonnelController{}, "*:DetailPersonnel")
+	beego.Router("/manage/personnel/photo", &PersonnelController{}, "*:PhotoPersonnel")
+	beego.Router("/api/personnel/data", &PersonnelController{}, "*:PersonnelData")
 	beego.Router("/api/personnel/save", &PersonnelController{}, "*:PersonnelSave")
+	beego.Router("/api/personnel/update", &PersonnelController{}, "*:PersonnelUpdate")
+	beego.Router("/api/personnel/updateBirthPlace", &PersonnelController{}, "*:PersonnelUpdateBirthPlace")
+	beego.Router("/api/personnel/delete/identity", &PersonnelController{}, "*:PersonnelDeleteIdentity")
 
 	beego.Router("/manage/orgstructure/group/edit", &OrgstructureController{}, "*:EditGroup")
 	beego.Router("/api/orgstructure/group/save", &OrgstructureController{}, "*:GroupSave")

@@ -68,9 +68,10 @@ type GroupParam struct {
 	CompanyId string `json:"companyId"`
 }
 
-type /*  */ PersonnelParam struct {
+type PersonnelParam struct {
 	BaseToken
 
+	Id          string `json:"id"`
 	Name          string `json:"name"`
 	Code          string `json:"code"`
 	Sex           string `json:"sex"`

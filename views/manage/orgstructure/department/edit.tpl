@@ -9,7 +9,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">部门岗位</label>
         <div class="layui-input-block tags" id="tags">
-            <input type="text" name="posts" id="inputTags" placeholder="按回车(Enter)添加更多" style="width: 97%;" autocomplete="off">
+            <input type="text" name="posts" id="inputTags" placeholder="输入后按回车(Enter)进行添加..." style="width: 97%;" autocomplete="off">
         </div>
     </div>
 
