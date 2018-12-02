@@ -44,7 +44,6 @@ layui.use(['layer', 'element', 'form', 'admin', 'inputTags'], function(){
     form.on('submit(departmentaddform)', function(data){
         data.field.posts = inputTags.config.content
         admin.req("/api/orgstructure/department/save", data.field, function(res) {
-            console.info(data.field)
             if(res.code === 200) {
                 admin.finishPopupCenter();
             } else {

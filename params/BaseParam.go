@@ -93,3 +93,16 @@ type PersonnelParam struct {
 	DeptUuid      string `json:"deptuuid"`
 	Post          string `json:"post"`
 }
+
+
+
+type MemorabiliaParam struct {
+	BaseToken
+
+	Uuid          string `json:"uuid"`
+
+	Title          string `json:"title"`
+	Content           string `json:"content"`
+	Happentime      string `json:"happentime"`
+	Prouuid          string `json:"prouuid"`
+}

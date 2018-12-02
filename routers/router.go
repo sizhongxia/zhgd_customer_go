@@ -54,8 +54,15 @@ func init() {
 	beego.Router("/api/project/groups", &ProjectController{}, "*:ProjectGroups")
 
 	beego.Router("/manage/account", &AccountController{}, "*:Index")
+	
 	beego.Router("/manage/memorabilia", &MemorabiliaController{}, "*:Index")
-	beego.Router("/manage/orgstructure", &OrgstructureController{}, "*:Index")
+	beego.Router("/manage/memorabilia/add", &MemorabiliaController{}, "*:AddMemorabilia")
+	beego.Router("/manage/memorabilia/edit", &MemorabiliaController{}, "*:EditMemorabilia")
+	beego.Router("/manage/memorabilia/pics", &MemorabiliaController{}, "*:PicsMemorabilia")
+	beego.Router("/api/memorabilia/data", &MemorabiliaController{}, "*:MemorabiliaData")
+	beego.Router("/api/memorabilia/save", &MemorabiliaController{}, "*:MemorabiliaSave")
+	beego.Router("/api/memorabilia/update", &MemorabiliaController{}, "*:MemorabiliaUpdate")
+	beego.Router("/api/memorabilia/delete", &MemorabiliaController{}, "*:MemorabiliaDelete")
 
 	beego.Router("/manage/personnel", &PersonnelController{}, "*:Index")
 	beego.Router("/manage/personnel/add", &PersonnelController{}, "*:AddPersonnel")
@@ -69,13 +76,14 @@ func init() {
 	beego.Router("/api/personnel/updateBirthPlace", &PersonnelController{}, "*:PersonnelUpdateBirthPlace")
 	beego.Router("/api/personnel/delete/identity", &PersonnelController{}, "*:PersonnelDeleteIdentity")
 
+	beego.Router("/manage/orgstructure", &OrgstructureController{}, "*:Index")
+	beego.Router("/api/orgstructure/data", &OrgstructureController{}, "*:OrgstructureData")
+	beego.Router("/api/orgstructure/treedata", &OrgstructureController{}, "*:OrgstructureTreeData")
+
 	beego.Router("/manage/orgstructure/group/edit", &OrgstructureController{}, "*:EditGroup")
 	beego.Router("/api/orgstructure/group/save", &OrgstructureController{}, "*:GroupSave")
 	beego.Router("/api/orgstructure/group/update", &OrgstructureController{}, "*:GroupUpdate")
 	beego.Router("/api/orgstructure/group/delete", &OrgstructureController{}, "*:GroupDelete")
-
-	beego.Router("/api/orgstructure/data", &OrgstructureController{}, "*:OrgstructureData")
-	beego.Router("/api/orgstructure/treedata", &OrgstructureController{}, "*:OrgstructureTreeData")
 
 	beego.Router("/manage/orgstructure/department/add", &OrgstructureController{}, "*:AddDepartment")
 	beego.Router("/manage/orgstructure/department/edit", &OrgstructureController{}, "*:EditDepartment")

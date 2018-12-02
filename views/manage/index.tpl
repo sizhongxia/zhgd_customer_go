@@ -70,10 +70,57 @@
                     element.render()
                 })
             } else if(layid === "memorabilia") {
-                laytpl(result).render({}, function(html){
-                    view.innerHTML = html;
-                    element.render()
-                })
+                function init() {
+                    admin.req("/api/memorabilia/data", {}, function(res) {
+                        laytpl(result).render(res, function(html){
+                            view.innerHTML = html;
+                            element.render()
+
+                            table.init('memorabiliatable', {
+                                page: {
+                                    limit: 20
+                                }
+                            });
+
+                            table.on('tool(memorabiliatable)', function(obj){
+                                var data = obj.data;
+                                var layEvent = obj.event;
+                                if(layEvent === 'edit'){ //编辑
+                                    admin.popupCenter({
+                                        title : '修改大事记',
+                                        path : '/manage/memorabilia/edit?id=' + data.id,
+                                        finish : function() {
+                                            init();
+                                        }
+                                    });
+                                } else if (layEvent === 'delete') {
+                                    layer.confirm('删除是否要删除当前大事记记录？', {title:'删除提示'}, function(index){
+                                        layer.close(index);
+                                        admin.req("/api/memorabilia/delete", {id: data.id}, function(res) {
+                                            if(res.code === 200) {
+                                                init();
+                                            } else {
+                                                layer.msg(res.message);
+                                            }
+                                        }, "POST");
+                                    });
+                                }
+                            });
+
+                            $(document).on('click','#create_memorabilia_btn',function(){
+                                admin.popupCenter({
+                                    title : '新增事记',
+                                    path : '/manage/memorabilia/add',
+                                    finish : function() {
+                                        init();
+                                    }
+                                });
+                            });
+
+                        })
+                    }, "POST");
+                }
+                init();
             } else if(layid === "personnel") {
                 
                 function init() {
