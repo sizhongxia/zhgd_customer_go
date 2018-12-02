@@ -87,6 +87,16 @@ func (this *MemorabiliaController) MemorabiliaDelete() {
 }
 
 func (this *MemorabiliaController) PicsMemorabilia() {
+	this.Data["id"] = this.GetString("id")
 	this.TplName = "manage/memorabilia/pics.tpl"
 }
 
+func (this *MemorabiliaController) MemorabiliaPics() {
+	param := params.MemorabiliaParam{}
+	param.Uuid = this.GetString("id")
+	param.Uid = this.GetSession("cutoken").(string)
+	param.Pid = this.GetSession("cptoken").(string)
+	_, res := utils.FetchPost(&param, "memorabilia/pics")
+	this.Data["json"] = res
+	this.ServeJSON()
+}

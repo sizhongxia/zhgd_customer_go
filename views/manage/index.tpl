@@ -104,6 +104,14 @@
                                             }
                                         }, "POST");
                                     });
+                                } else if (layEvent === 'pics') {
+                                    admin.popupCenter({
+                                        title : '大事记图册',
+                                        path : '/manage/memorabilia/pics?id=' + data.id,
+                                        finish : function() {
+                                            init();
+                                        }
+                                    });
                                 }
                             });
 

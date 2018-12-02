@@ -63,6 +63,7 @@ func init() {
 	beego.Router("/api/memorabilia/save", &MemorabiliaController{}, "*:MemorabiliaSave")
 	beego.Router("/api/memorabilia/update", &MemorabiliaController{}, "*:MemorabiliaUpdate")
 	beego.Router("/api/memorabilia/delete", &MemorabiliaController{}, "*:MemorabiliaDelete")
+	beego.Router("/api/memorabilia/pics", &MemorabiliaController{}, "*:MemorabiliaPics")
 
 	beego.Router("/manage/personnel", &PersonnelController{}, "*:Index")
 	beego.Router("/manage/personnel/add", &PersonnelController{}, "*:AddPersonnel")
