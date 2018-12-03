@@ -18,6 +18,8 @@ func init() {
 	beego.Router("/api/user/info", &MainController{}, "POST:UserInfo")
 	beego.Router("/api/user/menus", &MainController{}, "POST:UserMenus")
 	beego.Router("/upload/personnel/photo", &MainController{}, "POST:UploadPersonnelPhoto")
+	beego.Router("/upload/memorabilia/pics", &MainController{}, "POST:UploadMemorabiliaPics")
+	
 
 	// 工种管理
 	beego.Router("/manage/worktype", &WorktypeController{}, "*:Worktype")
@@ -59,11 +61,19 @@ func init() {
 	beego.Router("/manage/memorabilia/add", &MemorabiliaController{}, "*:AddMemorabilia")
 	beego.Router("/manage/memorabilia/edit", &MemorabiliaController{}, "*:EditMemorabilia")
 	beego.Router("/manage/memorabilia/pics", &MemorabiliaController{}, "*:PicsMemorabilia")
+	beego.Router("/manage/memorabilia/editpic", &MemorabiliaController{}, "*:EditPicMemorabilia")
 	beego.Router("/api/memorabilia/data", &MemorabiliaController{}, "*:MemorabiliaData")
 	beego.Router("/api/memorabilia/save", &MemorabiliaController{}, "*:MemorabiliaSave")
 	beego.Router("/api/memorabilia/update", &MemorabiliaController{}, "*:MemorabiliaUpdate")
 	beego.Router("/api/memorabilia/delete", &MemorabiliaController{}, "*:MemorabiliaDelete")
+	beego.Router("/api/memorabilia/release", &MemorabiliaController{}, "*:MemorabiliaRelease")
+	beego.Router("/api/memorabilia/outline", &MemorabiliaController{}, "*:MemorabiliaOutline")
+	beego.Router("/api/memorabilia/online", &MemorabiliaController{}, "*:MemorabiliaOnline")
 	beego.Router("/api/memorabilia/pics", &MemorabiliaController{}, "*:MemorabiliaPics")
+	beego.Router("/api/memorabilia/updatepic", &MemorabiliaController{}, "*:MemorabiliaUpdatePic")
+	beego.Router("/api/memorabilia/deletePic", &MemorabiliaController{}, "*:MemorabiliaDeletePic")
+
+
 
 	beego.Router("/manage/personnel", &PersonnelController{}, "*:Index")
 	beego.Router("/manage/personnel/add", &PersonnelController{}, "*:AddPersonnel")

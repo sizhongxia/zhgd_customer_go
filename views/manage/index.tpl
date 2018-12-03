@@ -1,7 +1,8 @@
 <style>
 .layui-tree li {line-height: 38px;}
 </style>
-<div class="layui-tab" lay-filter="smtype">
+
+<div class="layui-tab layui-tab-card" lay-filter="smtype">
     <ul class="layui-tab-title">
         <li class="layui-this" lay-id="project"><i class="layui-icon layui-icon-template-1"/> 项目信息</li>
         <li lay-id="account"><i class="layui-icon layui-icon-auz"/> 账号信息</li>
@@ -94,9 +95,42 @@
                                         }
                                     });
                                 } else if (layEvent === 'delete') {
-                                    layer.confirm('删除是否要删除当前大事记记录？', {title:'删除提示'}, function(index){
+                                    layer.confirm('是否要删除当前大事记记录？', {title:'删除提示'}, function(index){
                                         layer.close(index);
                                         admin.req("/api/memorabilia/delete", {id: data.id}, function(res) {
+                                            if(res.code === 200) {
+                                                init();
+                                            } else {
+                                                layer.msg(res.message);
+                                            }
+                                        }, "POST");
+                                    });
+                                } else if (layEvent === 'release') {
+                                    layer.confirm('是否要发布当前记录？', {title:'发布提示'}, function(index){
+                                        layer.close(index);
+                                        admin.req("/api/memorabilia/release", {id: data.id}, function(res) {
+                                            if(res.code === 200) {
+                                                init();
+                                            } else {
+                                                layer.msg(res.message);
+                                            }
+                                        }, "POST");
+                                    });
+                                } else if (layEvent === 'outline') {
+                                    layer.confirm('是否要下线当前记录？', {title:'下线提示'}, function(index){
+                                        layer.close(index);
+                                        admin.req("/api/memorabilia/outline", {id: data.id}, function(res) {
+                                            if(res.code === 200) {
+                                                init();
+                                            } else {
+                                                layer.msg(res.message);
+                                            }
+                                        }, "POST");
+                                    });
+                                } else if (layEvent === 'online') {
+                                    layer.confirm('是否要上线当前记录？', {title:'上线提示'}, function(index){
+                                        layer.close(index);
+                                        admin.req("/api/memorabilia/online", {id: data.id}, function(res) {
                                             if(res.code === 200) {
                                                 init();
                                             } else {

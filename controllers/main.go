@@ -4,7 +4,8 @@ import (
 	"zhgd/params"
 	"zhgd/utils"
 	"path"
-
+	"os"
+	"io"
 	"gopkg.in/mgo.v2/bson"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/logs"
@@ -18,6 +19,7 @@ func (this *MainController) Index() {
 	// this.TplName = "index.tpl"
 	this.Redirect("/console", 302)
 }
+
 func (this *MainController) Login() {
 	cutoken := this.GetSession("cutoken")
 	if cutoken != nil {
@@ -101,7 +103,7 @@ func (this *MainController) Logout() {
 
 // 上传用户头像
 func (this *MainController) UploadPersonnelPhoto() {
-	file, information, err := this.GetFile("file")
+	file, _, err := this.GetFile("file")
 	er := params.ErrorResult{}
     if err != nil {
         logs.Error(err)
@@ -112,8 +114,8 @@ func (this *MainController) UploadPersonnelPhoto() {
 		return;
     }
 	defer file.Close()
-	fileName := information.Filename
-	logs.Info(fileName)
+	// fileName := information.Filename
+	// logs.Info(fileName)
 
 	fileKey := bson.NewObjectId().Hex()
 	savePath := path.Join("static/upload",fileKey)
@@ -127,6 +129,67 @@ func (this *MainController) UploadPersonnelPhoto() {
 	param.Id = this.GetString("id")
 	param.Photo = fileKey
 	utils.FetchPost(&param, "personnel/updatePhoto")
+	er.Code = 200
+	this.Data["json"] = er
+	this.ServeJSON()
+}
+
+
+// 上传用户头像
+func (this *MainController) UploadMemorabiliaPics() {
+	er := params.ErrorResult{}
+
+	files, err := this.GetFiles("file")
+	if err != nil {
+		logs.Error(err)
+		er.Code = -1
+		er.Message = "上传文件失败"
+		this.Data["json"] = er
+		this.ServeJSON()
+		return;
+	}
+	for i, _ := range files {
+		file, err := files[i].Open()
+		defer file.Close()
+		if err != nil {
+			logs.Error(err)
+			er.Code = -2
+			er.Message = "上传文件失败"
+			this.Data["json"] = er
+			this.ServeJSON()
+			return;
+		}
+		fileKey := bson.NewObjectId().Hex()
+		savePath := path.Join("static/upload",fileKey)
+		// 存储本地
+		dst, err := os.Create(savePath)
+		defer dst.Close()
+		if err != nil {
+			logs.Error(err)
+			er.Code = -3
+			er.Message = "文件创建失败"
+			this.Data["json"] = er
+			this.ServeJSON()
+			return;
+		}
+		if _, err := io.Copy(dst, file); err != nil {
+			logs.Error(err)
+			er.Code = -4
+			er.Message = "保存文件失败"
+			this.Data["json"] = er
+			this.ServeJSON()
+			return;
+		}
+		// 上传至七牛云
+		utils.Upload(fileKey, savePath)
+		param := params.MemorabiliaPicParam{}
+		param.Uid = this.GetSession("cutoken").(string)
+		param.Pid = this.GetSession("cptoken").(string)
+		param.Id = this.GetString("id")
+		param.Pic = fileKey
+		utils.FetchPost(&param, "memorabilia/uploadPic")
+	}
+
 	er.Code = 200
 	this.Data["json"] = er
 	this.ServeJSON()

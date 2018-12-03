@@ -2,7 +2,7 @@ layui.define(['config', 'layer'], function (exports) {
     var config = layui.config;
     var layer = layui.layer;
     
-    var popupRightIndex, popupCenterIndex, popupCenterParam;
+    var popupRightIndex, popupCenterIndex, popupCenterIndexLevel2, popupCenterParam;
 
     var admin = {
         isRefresh: false,
@@ -61,11 +61,24 @@ layui.define(['config', 'layer'], function (exports) {
             popupCenterIndex = admin.open(param);
             return popupCenterIndex;
         },
+        popupCenterLevel2: function (param) {
+            param.id = 'adminPopupC2';
+            popupCenterParam = param;
+            popupCenterIndexLevel2 = admin.open(param);
+            return popupCenterIndexLevel2;
+        },
         // 关闭中间弹出并且触发finish回调
         finishPopupCenter: function (noClose) {
             if(!noClose) {
                 layer.close(popupCenterIndex);
                 layer.closeAll();
+            }
+            popupCenterParam.finish ? popupCenterParam.finish() : '';
+        },
+        // 关闭中间弹出并且触发finish回调
+        finishPopupCenterLevel2: function (noClose) {
+            if(!noClose) {
+                layer.close(popupCenterIndexLevel2);
             }
             popupCenterParam.finish ? popupCenterParam.finish() : '';
         },

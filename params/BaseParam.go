@@ -106,3 +106,13 @@ type MemorabiliaParam struct {
 	Happentime      string `json:"happentime"`
 	Prouuid          string `json:"prouuid"`
 }
+
+
+type MemorabiliaPicParam struct {
+	BaseToken
+
+	Id	string `json:"id"`
+	Pic string `json:"pic"`
+	Title string `json:"title"`
+	Sortnum string `json:"sortnum"`
+}
