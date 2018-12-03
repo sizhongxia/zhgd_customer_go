@@ -351,9 +351,6 @@ html {
 }
 
 /** 消息列表样式 */
-.message-list {
-}
-
 .message-list-item {
     padding: 10px 24px;
     border-bottom: 1px solid #e8e8e8;
