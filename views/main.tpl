@@ -13,12 +13,12 @@
     <link rel="stylesheet" href="/static/module/formSelects/formSelects-v4.css"/>
     <style type="text/css">
     	.layui-layer-move {z-index: 0 !important;}
-        .layui-layer-title {color: #ccc !important;background-color: #002a31 !important;}
-        .layui-layer-btn .layui-layer-btn0 {border-color: #002a31 !important;background-color: #002a31 !important;}
+        .layui-layer-title {color: #ccc !important;background-color: rgba(11, 22, 33, 0.88) !important;}
+        .layui-layer-btn .layui-layer-btn0 {border-color: rgba(11, 22, 33, 0.88) !important;background-color: rgba(11, 22, 33, 0.88) !important;}
         .layui-nav .layui-nav-item a {color: rgba(255,255,255,.45);}
         .layui-nav-tree .layui-nav-child dd.layui-this, .layui-nav-tree .layui-nav-child dd.layui-this a, .layui-nav-tree .layui-this, .layui-nav-tree .layui-this>a, .layui-nav-tree .layui-this>a:hover {background-color: rgba(255, 255, 255, 0.08);color: rgb(255,255,255);}
         .layui-layout-admin .layui-header .layui-nav .layui-this:after, .layui-layout-admin .layui-header .layui-nav-bar {background-color: #ffffff;}
-        .layui-nav-tree .layui-nav-bar {background-color: #003c46;}
+        .layui-nav-tree .layui-nav-bar {background-color: rgba(11, 22, 33, 0.88);}
     </style>
 </head>
 
@@ -49,8 +49,9 @@
             </ul>
         </div>
     </div>
-    <!-- 底部 -->
+    <!-- 底部 
     <div class="layui-footer">版权所有 &copy; 2019 By <a href="https://www.yeetong.cn" target="_blank">YeeTong.CN</a> 一通无限</div>
+    -->
     <!-- 手机屏幕遮罩层 -->
     <div class="site-mobile-shade"></div>
 </div>

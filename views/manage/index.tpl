@@ -4,7 +4,7 @@
 
 <div class="layui-tab layui-tab-card" lay-filter="smtype">
     <ul class="layui-tab-title">
-        <li class="layui-this" lay-id="project"><i class="layui-icon layui-icon-template-1"/> 项目信息</li>
+        <li class="layui-this" lay-id="project"><i class="layui-icon layui-icon-template-1"/> 工地信息</li>
         <li lay-id="account"><i class="layui-icon layui-icon-auz"/> 账号信息</li>
         <li lay-id="memorabilia"><i class="layui-icon layui-icon-tabs"/> 项目大事记</li>
         <li lay-id="personnel"><i class="layui-icon layui-icon-user"/> 人员管理</li>

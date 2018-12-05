@@ -1,29 +1,20 @@
 @charset "utf-8";
 /* CSS Document */
-#memorabilialist {
-	position: relative;
-	overflow: auto;
+#memorabilia-aside{
+	float: left;
+	width: 320px;
+	background: rgba(255,255,255,0.1);
 }
-#memorabilialist .memorabiliaitem {
-	width: 220px;
-	height: 120px;
-	border: 1px solid #efefef;
-	border-right: none;
-}
-#memorabilialist .memorabiliaitem:last-child{
-	border-right: 1px solid #efefef;
+#memorabilia-content{
+	margin-left: 335px;
+	background: rgba(255,255,255,0.1);
+	text-align:center;
 }
 
-#memorabilialist .memorabiliaitem p {
-	width: 220px;
-	height: 120px;
-	border: 1px solid #efefef;
-}
 
 #memorabilia {
 	position: relative;
 	width: 90%;
-	max-width: 800px;
 	margin: 0 auto;
 }
 
@@ -33,21 +24,19 @@
 	height: 100%;
 }
 
-#memorabilia  .swiper-slide {
-	background: #fff;
-}
+
 #memorabilia  .swiper-slide img{
 	display:block;
 	margin: auto;
-	width: 620px;
-	height: 310px;
+	width: 80%;
+	max-width: 900px;
 }
 #memorabilia  .swiper-slide p {
 	height: 98px;
     line-height: 36px;
 	padding-top: 0;
 	text-align: center;
-	color: #636363;
+	color: #fff;
 	font-size: 1.1em;
 	margin: 0;
 }

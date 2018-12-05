@@ -56,7 +56,7 @@ layuiXtree.prototype.Loading = function (options) {
     _this.xloading.setAttribute('class', 'layui-icon layui-anim layui-anim-rotate layui-anim-loop');
     _this.xloading.innerHTML = '&#xe63e;';
     _this.xloading.style.fontSize = "50px";
-    _this.xloading.style.color = "#009688";
+    _this.xloading.style.color = "rgba(11, 22, 33, 0.88)";
     _this.xloading.style.fontWeight = "bold";
     _this.xloading.style.marginLeft = _this._container.offsetWidth / 2 - 25 + 'px';
     _this.xloading.style.marginTop = _this._container.offsetHeight / 2 - 50 + 'px';

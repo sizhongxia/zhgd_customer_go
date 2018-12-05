@@ -1,6 +1,6 @@
 
 <style>
-    .layui-elem-quote {border-left: 5px solid #002a31;}
+    .layui-elem-quote {border-left: 5px solid rgba(11, 22, 33, 0.88);}
 </style>
 <blockquote class="layui-elem-quote">
 当前分包商：<<< .data.data.name >>>

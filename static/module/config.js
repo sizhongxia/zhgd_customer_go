@@ -9,7 +9,7 @@ layui.define(function(exports) {
 			user_menus: '/api/user/menus',
 		},
 		tableName : 'zhgd-table',
-		autoRender : true,
+		autoRender : false,
 		pageTabs : false
 	};
 	exports('config', config);

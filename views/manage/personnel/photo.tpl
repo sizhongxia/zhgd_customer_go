@@ -50,7 +50,7 @@ layui.use(['layer', 'element', 'upload', 'admin'], function(){
                 layer.close(uploading)
             }
             var demoText = $('#upload-errinfo');
-            demoText.html('<span style="color: #FF5722;">上传失败</span> <a href="javascript:;" class="layui-btn-mini upload-reload">重试</a>');
+            demoText.html('<span style="color: #ff8a00;">上传失败</span> <a href="javascript:;" class="layui-btn-mini upload-reload">重试</a>');
             demoText.find('.upload-reload').on('click', function(){
                 uploadInst.upload();
             });
