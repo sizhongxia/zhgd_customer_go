@@ -6,8 +6,10 @@
     <title>一通无限科技</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="/static/libs/layui/css/layui.css?v=2.4.3"/>
+    <link rel="stylesheet" href="/static/libs/swiper/swiper.min.css?v=4.0.5"/>
     <link rel="stylesheet" href="/static/css/admin.css"/>
     <link rel="stylesheet" href="/static/css/console.css"/>
+    <link rel="stylesheet" href="/static/css/memorabilia.css"/>
     <link rel="stylesheet" href="/static/module/formSelects/formSelects-v4.css"/>
     <style type="text/css">
     	.layui-layer-move {z-index: 0 !important;}
@@ -48,7 +50,7 @@
         </div>
     </div>
     <!-- 底部 -->
-    <div class="layui-footer">YeeTong.CN 一通无限科技</div>
+    <div class="layui-footer">版权所有 &copy; 2019 By <a href="https://www.yeetong.cn" target="_blank">YeeTong.CN</a> 一通无限</div>
     <!-- 手机屏幕遮罩层 -->
     <div class="site-mobile-shade"></div>
 </div>
@@ -57,6 +59,7 @@
 <script type="text/javascript" src="/static/libs/q.js"></script>
 <script type="text/javascript" src="/static/libs/pandyle.min.js"></script>
 <script type="text/javascript" src="/static/libs/layui/layui.js"></script>
+<script type="text/javascript" src="/static/libs/swiper/swiper.min.js"></script>
 <script type="text/javascript" src="/static/js/g2.js"></script>
 
 

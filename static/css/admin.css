@@ -595,7 +595,7 @@ html {
 
 .layui-layout-admin .layui-body .layui-tab .layui-tab-title li.layui-this,
 .layui-layout-admin .layui-body .layui-tab .layui-tab-title li:hover {
-    background-color: #315f67;
+    background-color: #287b83;
     color: #fff;
 }
 
@@ -603,7 +603,7 @@ html {
     width: 100%;
     border: none;
     height: 2px;
-    background-color: #292B34
+    background-color: #025e66
 }
 
 
