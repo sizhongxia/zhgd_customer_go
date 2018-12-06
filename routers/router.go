@@ -19,7 +19,6 @@ func init() {
 	beego.Router("/api/user/menus", &MainController{}, "POST:UserMenus")
 	beego.Router("/upload/personnel/photo", &MainController{}, "POST:UploadPersonnelPhoto")
 	beego.Router("/upload/memorabilia/pics", &MainController{}, "POST:UploadMemorabiliaPics")
-	
 
 	// 工种管理
 	beego.Router("/manage/worktype", &WorktypeController{}, "*:Worktype")
@@ -56,7 +55,7 @@ func init() {
 	beego.Router("/api/project/groups", &ProjectController{}, "*:ProjectGroups")
 
 	beego.Router("/manage/account", &AccountController{}, "*:Index")
-	
+
 	beego.Router("/manage/memorabilia", &MemorabiliaController{}, "*:Index")
 	beego.Router("/manage/memorabilia/add", &MemorabiliaController{}, "*:AddMemorabilia")
 	beego.Router("/manage/memorabilia/edit", &MemorabiliaController{}, "*:EditMemorabilia")
@@ -73,8 +72,6 @@ func init() {
 	beego.Router("/api/memorabilia/updatepic", &MemorabiliaController{}, "*:MemorabiliaUpdatePic")
 	beego.Router("/api/memorabilia/deletePic", &MemorabiliaController{}, "*:MemorabiliaDeletePic")
 
-
-
 	beego.Router("/manage/personnel", &PersonnelController{}, "*:Index")
 	beego.Router("/manage/personnel/add", &PersonnelController{}, "*:AddPersonnel")
 	beego.Router("/manage/personnel/edit", &PersonnelController{}, "*:EditPersonnel")
@@ -86,6 +83,8 @@ func init() {
 	beego.Router("/api/personnel/update", &PersonnelController{}, "*:PersonnelUpdate")
 	beego.Router("/api/personnel/updateBirthPlace", &PersonnelController{}, "*:PersonnelUpdateBirthPlace")
 	beego.Router("/api/personnel/delete/identity", &PersonnelController{}, "*:PersonnelDeleteIdentity")
+
+	beego.Router("/api/personnel/statistics/worktype", &PersonnelStatisticsController{}, "*:Worktype")
 
 	beego.Router("/manage/orgstructure", &OrgstructureController{}, "*:Index")
 	beego.Router("/api/orgstructure/data", &OrgstructureController{}, "*:OrgstructureData")

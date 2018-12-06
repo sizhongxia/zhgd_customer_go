@@ -15,7 +15,7 @@
         padding:0 12px;
     }
 </style>
-
+<!-- 
 <div id="console-box" style="overflow:hidden;">
    <div id="memorabilia-aside">
         
@@ -28,7 +28,7 @@
 
         </div>
     </div>
-</div>
+</div>-->
 
 <script id="memorabiliatpl" type="text/html">
     <div class="swiper-container">
@@ -58,8 +58,8 @@
             $("#memorabilia-content").height($(window).height() - 81)
         }
 
-        initHeight();
-        $(window).resize(initHeight);
+        //initHeight();
+        //$(window).resize(initHeight);
 
         /*new Swiper('#memorabilialist .swiper-container', {
             slidesPerView: 'auto',
@@ -75,7 +75,7 @@
                     console.info(e.target.dataset.id)
                 }
             }
-        })*/
+        })
 
         var data = {
             list: [
@@ -108,7 +108,7 @@
                     },
                 }
             })
-        });
+        });*/
 
     })
 </script>
