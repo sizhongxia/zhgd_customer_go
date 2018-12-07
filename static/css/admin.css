@@ -3,7 +3,6 @@ html {
     background-color: #f2f2f2;
     color: #666;
 }
-
 /** header样式 */
 /** 导航栏下面的线条 */
 .layui-layout-admin .layui-header .layui-nav .layui-this:after, .layui-layout-admin .layui-header .layui-nav-bar {
@@ -602,7 +601,7 @@ html {
 
 .layui-layout-admin .layui-body .layui-tab .layui-tab-title li.layui-this,
 .layui-layout-admin .layui-body .layui-tab .layui-tab-title li:hover {
-    background-color: rgba(11, 22, 33, 0.88);
+    background-color: #1e9fff;
     color: #fff;
 }
 
