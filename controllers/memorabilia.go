@@ -3,6 +3,7 @@ package controllers
 import (
 	"zhgd/params"
 	"zhgd/utils"
+
 	"github.com/astaxie/beego"
 )
 
@@ -24,10 +25,28 @@ func (this *MemorabiliaController) MemorabiliaData() {
 	this.ServeJSON()
 }
 
+func (this *MemorabiliaController) MemorabiliaList() {
+	token := params.BaseToken{}
+	token.Uid = this.GetSession("cutoken").(string)
+	token.Pid = this.GetSession("cptoken").(string)
+	_, res := utils.FetchPost(&token, "memorabilia/list")
+	this.Data["json"] = res
+	this.ServeJSON()
+}
+
+func (this *MemorabiliaController) MemorabiliaDetail() {
+	token := params.MemorabiliaParam{}
+	token.Uid = this.GetSession("cutoken").(string)
+	token.Pid = this.GetSession("cptoken").(string)
+	token.Uuid = this.GetString("id")
+	_, res := utils.FetchPost(&token, "memorabilia/detail")
+	this.Data["json"] = res
+	this.ServeJSON()
+}
+
 func (this *MemorabiliaController) AddMemorabilia() {
 	this.TplName = "manage/memorabilia/add.tpl"
 }
-
 
 func (this *MemorabiliaController) MemorabiliaSave() {
 	memorabiliaParam := params.MemorabiliaParam{}
@@ -39,12 +58,11 @@ func (this *MemorabiliaController) MemorabiliaSave() {
 	memorabiliaParam.Title = this.GetString("title")
 	memorabiliaParam.Content = this.GetString("content")
 	memorabiliaParam.Happentime = this.GetString("happenTime")
-	
+
 	_, res := utils.FetchPost(&memorabiliaParam, "memorabilia/save")
 	this.Data["json"] = res
 	this.ServeJSON()
 }
-
 
 func (this *MemorabiliaController) EditMemorabilia() {
 	memorabiliaParam := params.MemorabiliaParam{}
@@ -70,7 +88,7 @@ func (this *MemorabiliaController) MemorabiliaUpdate() {
 	memorabiliaParam.Title = this.GetString("title")
 	memorabiliaParam.Content = this.GetString("content")
 	memorabiliaParam.Happentime = this.GetString("happenTime")
-	
+
 	_, res := utils.FetchPost(&memorabiliaParam, "memorabilia/update")
 	this.Data["json"] = res
 	this.ServeJSON()
@@ -116,7 +134,6 @@ func (this *MemorabiliaController) MemorabiliaOnline() {
 	this.ServeJSON()
 }
 
-
 func (this *MemorabiliaController) PicsMemorabilia() {
 	this.Data["id"] = this.GetString("id")
 	this.TplName = "manage/memorabilia/pics.tpl"
@@ -144,7 +161,6 @@ func (this *MemorabiliaController) EditPicMemorabilia() {
 	this.TplName = "manage/memorabilia/editpic.tpl"
 }
 
-
 func (this *MemorabiliaController) MemorabiliaUpdatePic() {
 	memorabiliaParam := params.MemorabiliaPicParam{}
 
@@ -154,7 +170,7 @@ func (this *MemorabiliaController) MemorabiliaUpdatePic() {
 	memorabiliaParam.Id = this.GetString("id")
 	memorabiliaParam.Title = this.GetString("title")
 	memorabiliaParam.Sortnum = this.GetString("sortnum")
-	
+
 	_, res := utils.FetchPost(&memorabiliaParam, "memorabilia/updatePic")
 	this.Data["json"] = res
 	this.ServeJSON()

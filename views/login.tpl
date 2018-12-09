@@ -20,11 +20,13 @@
 
 <body>
 <div class="login-wrapper">
-    <div class="login-header">YeeTong</div>
+    <div class="login-header">
+        <img src="/static/images/yeetong-logo-200x55-white.png"/>
+    </div>
     <div class=" login-body">
         <div class="layui-card">
             <div class="layui-card-header">
-                <i class="layui-icon layui-icon-engine"></i>&nbsp;&nbsp;登录
+                <i class="layui-icon layui-icon-engine"></i>&nbsp;&nbsp;智慧工地管理平台 - 登录
             </div>
             <div class="layui-card-body layui-form layui-form-pane">
                 <form action="/loginaction" method="post">
@@ -48,6 +50,10 @@
             </div>
         </div>
     </div>
+</div>
+<div style="position: fixed;bottom: 0;width: 100%;height: 80px;text-align: center;position:fixed;color:#fefefe">
+    <p>北京一通无限科技有限责任公司</p>
+    <p>版权所有 &copy; 2018-2019 YeeTong.CN</p>
 </div>
 <script type="text/javascript" src="/static/libs/layui/layui.js?v=2.4.3"></script>
 <script>

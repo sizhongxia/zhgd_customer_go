@@ -45,7 +45,7 @@
                     padding: [20, 0, 30, 0]
                 });
                 chart.source(res.data);
-                chart.interval().position('item*num').color('type', function(val) {return '#3060f0';}).label('num', {
+                chart.interval().position('item*num').color('#1e9fff').label('num', {
                     useHtml: true,
                     htmlTemplate: function htmlTemplate(text, item) {
                         var a = item.point;

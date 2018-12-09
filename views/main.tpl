@@ -6,7 +6,7 @@
     <title>一通无限科技</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="/static/libs/layui/css/layui.css?v=2.4.3"/>
-    <link rel="stylesheet" href="/static/libs/swiper/swiper.min.css?v=4.0.5"/>
+    <link rel="stylesheet" href="//cdn.bootcss.com/Swiper/4.4.2/css/swiper.min.css"/>
     <link rel="stylesheet" href="/static/css/admin.css"/>
     <link rel="stylesheet" href="/static/css/console.css"/>
     <link rel="stylesheet" href="/static/css/memorabilia.css"/>
@@ -56,11 +56,12 @@
     <div class="site-mobile-shade"></div>
 </div>
 
-<script type="text/javascript" src="/static/libs/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script type="text/javascript" src="/static/libs/q.js"></script>
 <script type="text/javascript" src="/static/libs/pandyle.min.js"></script>
 <script type="text/javascript" src="/static/libs/layui/layui.js"></script>
-<script type="text/javascript" src="/static/libs/swiper/swiper.min.js"></script>
+<script type="text/javascript" src="//cdn.bootcss.com/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
+<script type="text/javascript" src="//cdn.bootcss.com/Swiper/4.4.2/js/swiper.min.js"></script>
 <script type="text/javascript" src="/static/js/g2.js"></script>
 
 

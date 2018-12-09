@@ -3,12 +3,14 @@
     <div class="layui-form-item" style="text-align: center;">
         <img alt="<<<.pic.data.title>>>" src="<<<.pic.data.src>>>"/>
     </div>
+    <!--
     <div class="layui-form-item">
         <label class="layui-form-label">图片序号</label>
         <div class="layui-input-block">
             <input type="number" name="sortnum" value="<<<.pic.data.sortnum>>>" required lay-verify="required" placeholder="请输入图片序号" autocomplete="off" class="layui-input">
         </div>
     </div>
+    -->
     <div class="layui-form-item">
         <label class="layui-form-label">图片标题</label>
         <div class="layui-input-block">

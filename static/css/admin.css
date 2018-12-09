@@ -1,8 +1,9 @@
 /** EasyWeb */
 html {
     background-color: #f2f2f2;
-    color: #666;
+    color: rgb(54, 54, 54);
 }
+
 /** header样式 */
 /** 导航栏下面的线条 */
 .layui-layout-admin .layui-header .layui-nav .layui-this:after, .layui-layout-admin .layui-header .layui-nav-bar {
@@ -150,6 +151,9 @@ html {
     padding-top: 8px;
     padding-bottom: 8px;
 }
+.layui-nav-tree .layui-nav-child dd.layui-this, .layui-nav-tree .layui-nav-child dd.layui-this a, .layui-nav-tree .layui-this, .layui-nav-tree .layui-this>a, .layui-nav-tree .layui-this>a:hover {
+    background-color: rgba(30, 159, 255, 0.5) !important;
+}
 
 /** 侧边栏样式结束 */
 
@@ -157,15 +161,28 @@ html {
 .layui-layout-admin .layui-body {
     left: 160px;
     top: 50px;
-    transition: left .3s;
     padding: 15px;
     height: 100%;
-    transition: opacity 700ms;
+    z-index: 0;
+}
+
+.layui-layout-admin .layui-body::after {
+    content: "";
     background-image: url(/static/images/bg.png);
     background-position: center center;
     background-repeat: no-repeat;
-    z-index: 0;
-}
+    background-size: contain;
+    filter:alpha(opacity=20);  
+    -moz-opacity: 0.2;
+    -khtml-opacity: 0.2;
+    opacity: 0.2;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;   
+  }
 
 /** //主体部分样式结束 */
 
@@ -464,6 +481,7 @@ html {
 .layui-layout-body .layui-layer-page .layui-layer-content {
     overflow: auto;
     padding: 20px;
+    background-color: #f2f2f2;
 }
 
 /* layui文档官网右侧弹窗目录列表的样式 */
@@ -566,6 +584,7 @@ html {
     right: 0;
     top: 55px;
     left: 0;
+    background: #f2f2f2;
 }
 
 /** 选项卡标题样式 */
@@ -609,7 +628,7 @@ html {
     width: 100%;
     border: none;
     height: 2px;
-    background-color: rgba(11, 22, 33, 0.88)
+    background-color: #0093ff;
 }
 
 

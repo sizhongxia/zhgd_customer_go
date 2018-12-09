@@ -14,11 +14,11 @@
     </div>
 </div>
 
-<script id="demo" type="text/html">
+<script id="pictplbox" type="text/html">
     {{#  layui.each(d.data, function(index, item){ }}
         <div class="cmdlist-container" data-id="{{item.id}}">
             <a href="javascript:;"><img src="{{item.src}}"/></a>
-            <div class="cmdlist-container-title">No.{{item.sortnum}} {{item.title}}</div>
+            <div class="cmdlist-container-title">{{item.title}}</div>
         </div>
     {{#  }); }}
     <div style="clean:both;"></div>
@@ -34,7 +34,7 @@ layui.use(['layer', 'element', 'upload', 'laytpl', 'admin'], function(){
 
     var loadPics = function() {
         admin.req("/api/memorabilia/pics", {id: rid}, function(res) {
-            laytpl(demo.innerHTML).render(res, function(html){
+            laytpl(pictplbox.innerHTML).render(res, function(html){
                 view.innerHTML = html;
             })
         }, "POST");

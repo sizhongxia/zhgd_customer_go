@@ -11,10 +11,10 @@ layui.define(['config', 'admin', 'layer', 'laytpl', 'element', 'form'], function
         // 渲染左侧导航栏
         initLeftNav: function () {
             layer.load(2);
-        	admin.req(config.api.user_menus, {}, function (data) {
+            admin.req(config.api.user_menus, {}, function (data) {
                 layer.closeAll('loading');
                 if (data.code === 200) {
-                	let menus = data.data;
+                    let menus = data.data;
                     for (var i = menus.length - 1; i >= 0; i--) {
                         var tempMenu = menus[i];
                         if (!tempMenu.subMenus) {
@@ -28,7 +28,7 @@ layui.define(['config', 'admin', 'layer', 'laytpl', 'element', 'form'], function
                             }
                         }
                     }
-                    
+
                     // 去除空的目录
                     for (var i = menus.length - 1; i >= 0; i--) {
                         var tempMenu = menus[i];
@@ -37,7 +37,7 @@ layui.define(['config', 'admin', 'layer', 'laytpl', 'element', 'form'], function
                             continue;
                         }
                     }
-                    
+
                     // 渲染
                     $('.layui-layout-admin .layui-side').load(config.api.sidenav, function () {
                         laytpl(sideNav.innerHTML).render(menus, function (html) {
@@ -46,11 +46,11 @@ layui.define(['config', 'admin', 'layer', 'laytpl', 'element', 'form'], function
                         element.render('nav');
                         admin.activeNav(Q.lash);
                     });
-                    
+
                     index.initRouter(menus);
-                    
+
                 } else {
-                	location.replace(config.api.notauth);
+                    location.replace(config.api.notauth);
                 }
             }, "POST");
         },
@@ -115,7 +115,7 @@ layui.define(['config', 'admin', 'layer', 'laytpl', 'element', 'form'], function
         bindEvent: function () {
             // 退出登录
             $('#btnLogout').click(function () {
-                layer.confirm('是否要退出当前系统？', {title:'退出提示'}, function () {
+                layer.confirm('是否要退出当前系统？', { title: '退出提示' }, function () {
                     location.replace(config.api.logout);
                 });
             });
@@ -125,7 +125,7 @@ layui.define(['config', 'admin', 'layer', 'laytpl', 'element', 'form'], function
             });
             // 个人信息
             $('#setInfo').click(function () {
-            	admin.popupRight(config.api.personal);
+                admin.popupRight(config.api.personal);
             });
             // 消息
             //$('#btnMessage').click(function () {
@@ -158,6 +158,32 @@ layui.define(['config', 'admin', 'layer', 'laytpl', 'element', 'form'], function
         var layId = $(this).attr('lay-id');
         Q.go(layId);
     });
+
+    function initFontSize() {
+        var rate = 100 / 1920;
+        var rateh = 100 / 1080;
+        var windowWidth = window.innerWidth;
+        var windowHeight = window.innerHeight;
+        var remw, remh;
+        if (windowWidth <= 1422) {
+            remw = 1422 * rate;
+        } else {
+            remw = windowWidth * rate;
+        }
+        if (windowHeight <= 800) {
+            remh = 800 * rate;
+        } else {
+            remh = windowHeight * rateh;
+        }
+        if (remw < remh) {
+            remw = remh
+        }
+        $('html').css('font-size', remw + "px");
+    }
+
+    initFontSize()
+    $(window).resize(initFontSize)
+
 
     exports('index', index);
 });

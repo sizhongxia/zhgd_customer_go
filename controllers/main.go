@@ -1,14 +1,15 @@
 package controllers
 
 import (
+	"io"
+	"os"
+	"path"
 	"zhgd/params"
 	"zhgd/utils"
-	"path"
-	"os"
-	"io"
-	"gopkg.in/mgo.v2/bson"
+
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/logs"
+	"gopkg.in/mgo.v2/bson"
 )
 
 type MainController struct {
@@ -16,8 +17,8 @@ type MainController struct {
 }
 
 func (this *MainController) Index() {
-	// this.TplName = "index.tpl"
-	this.Redirect("/console", 302)
+	this.TplName = "index.tpl"
+	//this.Redirect("/console", 302)
 }
 
 func (this *MainController) Login() {
@@ -105,20 +106,20 @@ func (this *MainController) Logout() {
 func (this *MainController) UploadPersonnelPhoto() {
 	file, _, err := this.GetFile("file")
 	er := params.ErrorResult{}
-    if err != nil {
-        logs.Error(err)
+	if err != nil {
+		logs.Error(err)
 		er.Code = -1
 		er.Message = "上传文件失败"
 		this.Data["json"] = er
 		this.ServeJSON()
-		return;
-    }
+		return
+	}
 	defer file.Close()
 	// fileName := information.Filename
 	// logs.Info(fileName)
 
 	fileKey := bson.NewObjectId().Hex()
-	savePath := path.Join("static/upload",fileKey)
+	savePath := path.Join("static/upload", fileKey)
 	// 存储本地
 	this.SaveToFile("file", savePath)
 	// 上传至七牛云
@@ -134,7 +135,6 @@ func (this *MainController) UploadPersonnelPhoto() {
 	this.ServeJSON()
 }
 
-
 // 上传用户头像
 func (this *MainController) UploadMemorabiliaPics() {
 	er := params.ErrorResult{}
@@ -146,7 +146,7 @@ func (this *MainController) UploadMemorabiliaPics() {
 		er.Message = "上传文件失败"
 		this.Data["json"] = er
 		this.ServeJSON()
-		return;
+		return
 	}
 	for i, _ := range files {
 		file, err := files[i].Open()
@@ -157,10 +157,10 @@ func (this *MainController) UploadMemorabiliaPics() {
 			er.Message = "上传文件失败"
 			this.Data["json"] = er
 			this.ServeJSON()
-			return;
+			return
 		}
 		fileKey := bson.NewObjectId().Hex()
-		savePath := path.Join("static/upload",fileKey)
+		savePath := path.Join("static/upload", fileKey)
 		// 存储本地
 		dst, err := os.Create(savePath)
 		defer dst.Close()
@@ -170,7 +170,7 @@ func (this *MainController) UploadMemorabiliaPics() {
 			er.Message = "文件创建失败"
 			this.Data["json"] = er
 			this.ServeJSON()
-			return;
+			return
 		}
 		if _, err := io.Copy(dst, file); err != nil {
 			logs.Error(err)
@@ -178,7 +178,7 @@ func (this *MainController) UploadMemorabiliaPics() {
 			er.Message = "保存文件失败"
 			this.Data["json"] = er
 			this.ServeJSON()
-			return;
+			return
 		}
 		// 上传至七牛云
 		utils.Upload(fileKey, savePath)
