@@ -38,9 +38,16 @@
     }
 
     .layui-timeline-title p {
-        font-size: 0.14rem;
+        font-size: 0.12rem;
         margin-bottom: 10px;
-        color: #2d3b4c;
+        color: #ffffff;
+        position: absolute;
+        background: rgba(17, 31, 49, 0.8);
+        width: 1.8rem;
+        bottom: -10px;
+        line-height: 0.28rem;
+        padding: 0 0.1rem;
+        overflow: hidden;
     }
 
     .picswiper {
@@ -63,6 +70,7 @@
         -ms-flex-align: center;
         -webkit-align-items: center;
         align-items: center;
+        cursor: pointer;
     }
 
     .contentswiper {
@@ -76,6 +84,11 @@
         -webkit-box-sizing: border-box;
         box-sizing: border-box;
         padding: 0px 60px;
+    }
+
+    .layui-layout-body .layui-layer-page .layui-layer-content {
+        overflow:hidden;
+        padding: 0;
     }
 </style>
 <div id="console-box">
@@ -116,11 +129,11 @@
     </div>
     <div style="width: 100%;height: .2rem;overflow: hidden;"></div>
     <div style="width: 100%;height: 2.26rem;overflow: hidden;">
+        <h3 style="width: 100%;height: 0.36rem;line-height: 0.36rem;font-size: 0.22rem;color: #27a3ff;font-weight: bold;text-indent:0.48rem;">{{d.data.title}} &nbsp; <small>{{d.data.happentime}}</small></h3>
         <!-- Swiper -->
         <div class="swiper-container contentswiper">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
-                    <h3 style="width: 100%;height: 0.36rem;line-height: 0.36rem;font-size: 0.22rem;color: #27a3ff;font-weight: bold;">【{{d.data.happentime}}】 {{d.data.title}}</h3>
                     <p style="text-indent: 2em;line-height: .28rem;text-align: justify;">{{d.data.content}}</p>
                 </div>
             </div>
@@ -139,13 +152,13 @@
         var admin = layui.admin;
         var laytpl = layui.laytpl;
 
-        admin.req("/api/memorabilia/list", {}, function(res) {
-            if(res.code == 200) {
+        admin.req("/api/memorabilia/list", {}, function (res) {
+            if (res.code == 200) {
                 var view = document.getElementById('timelinelist');
-                laytpl(timelineitemtpl.innerHTML).render(res, function(html){
+                laytpl(timelineitemtpl.innerHTML).render(res, function (html) {
                     view.innerHTML = html;
                 })
-                if(res.data.length > 0) {
+                if (res.data.length > 0) {
                     loadDetail(res.data[0].id)
                 }
             } else {
@@ -167,24 +180,34 @@
         $(window).resize(initHeight)
 
         function loadDetail(id) {
-            admin.req("/api/memorabilia/detail", {id:id}, function(res) {
-                if(res.code == 200) {
+            admin.req("/api/memorabilia/detail", { id: id }, function (res) {
+                if (res.code == 200) {
                     var view = document.getElementById('timelinecontent');
-                    laytpl(timelinecontenttpl.innerHTML).render(res, function(html){
+                    laytpl(timelinecontenttpl.innerHTML).render(res, function (html) {
                         view.innerHTML = html;
                         new Swiper('.picswiper', {
                             //effect: 'fade',
-                            loop : true,
+                            loop: true,
                             pagination: {
                                 el: '.picswiper .swiper-pagination',
                                 //type: 'fraction',
                                 dynamicBullets: true,
                             },
-                            autoplay: {
-                                delay: 2500,
-                                disableOnInteraction: false,
-                            },
+                            on: {
+                                click: function (e) {
+                                    if(e.srcElement.currentSrc) {
+                                        layer.photos({
+                                            photos: {
+                                                "data": [
+                                                    { "src": e.srcElement.currentSrc }
+                                                ]
+                                            }
+                                        });
+                                    }
+                                }
+                            }
                         });
+
                         new Swiper('.contentswiper', {
                             direction: 'vertical',
                             slidesPerView: 'auto',
@@ -201,7 +224,7 @@
             }, "POST")
         }
 
-        $("#timelinelist").on('click', 'img', function() {
+        $("#timelinelist").on('click', 'img', function () {
             loadDetail($(this).data("id"))
         })
     });

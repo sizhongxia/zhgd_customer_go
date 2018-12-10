@@ -20,7 +20,7 @@
     </li>
     <li class="layui-nav-item" lay-unselect>
         <a>
-            <cite>您好{{ userName }}, 欢迎使用</cite>
+            <cite>欢迎使用</cite>
         </a>
         <dl class="layui-nav-child">
             <dd lay-unselect>
