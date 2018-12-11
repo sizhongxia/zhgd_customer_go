@@ -89,6 +89,7 @@ func init() {
 	beego.Router("/api/personnel/delete/identity", &PersonnelController{}, "*:PersonnelDeleteIdentity")
 
 	beego.Router("/api/personnel/statistics/worktype", &PersonnelStatisticsController{}, "*:Worktype")
+	beego.Router("/api/personnel/statistics/basecensuss", &PersonnelStatisticsController{}, "*:BaseCensuss")
 
 	beego.Router("/manage/orgstructure", &OrgstructureController{}, "*:Index")
 	beego.Router("/api/orgstructure/data", &OrgstructureController{}, "*:OrgstructureData")

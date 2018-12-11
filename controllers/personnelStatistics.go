@@ -19,3 +19,12 @@ func (this *PersonnelStatisticsController) Worktype() {
 	this.Data["json"] = res
 	this.ServeJSON()
 }
+
+func (this *PersonnelStatisticsController) BaseCensuss() {
+	baseParam := params.BaseToken{}
+	baseParam.Uid = this.GetSession("cutoken").(string)
+	baseParam.Pid = this.GetSession("cptoken").(string)
+	_, res := utils.FetchPost(&baseParam, "personnel/statistics/basecensuss")
+	this.Data["json"] = res
+	this.ServeJSON()
+}

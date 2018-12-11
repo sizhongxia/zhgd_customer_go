@@ -113,6 +113,10 @@
     <script type="text/javascript" src="//cdn.bootcss.com/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
     <script type="text/javascript" src="//cdn.bootcss.com/Swiper/4.4.2/js/swiper.min.js"></script>
     <script type="text/javascript" src="/static/js/g2.js"></script>
+        
+    <script src="//gw.alipayobjects.com/os/antv/pkg/_antv.data-set-0.10.1/dist/data-set.min.js"></script>
+    <script src="//webapi.amap.com/maps?v=1.4.1&key=0d78256ea89beeb8c25d1cd047549d1f"></script>
+    <script src="//webapi.amap.com/ui/1.0/main.js?v=1.0.11"></script>
 
 
     <script>
