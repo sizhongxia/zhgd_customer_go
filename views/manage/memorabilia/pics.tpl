@@ -1,6 +1,6 @@
 <style>
     .layadmin-cmdlist-fluid{padding-bottom:60px}
-    .cmdlist-container{background:#fff;border:1px solid #eee;width:290px;height:225px;float:left;margin: 10px 24px 10px 0;}
+    .cmdlist-container{background:#fff;border:1px solid #eee;width:290px;height:180px;float:left;margin: 10px 24px 10px 0;}
     .cmdlist-container:hover{border:1px solid #00242a}
     .cmdlist-container img{width:100%;height:180px}
     .cmdlist-container-title {width:100%;line-height:22px;height: 44px;overflow: hidden;}
@@ -18,7 +18,6 @@
     {{#  layui.each(d.data, function(index, item){ }}
         <div class="cmdlist-container" data-id="{{item.id}}">
             <a href="javascript:;"><img src="{{item.src}}"/></a>
-            <div class="cmdlist-container-title">{{item.title}}</div>
         </div>
     {{#  }); }}
     <div style="clean:both;"></div>

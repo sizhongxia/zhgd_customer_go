@@ -79,7 +79,7 @@
         <!-- 侧边栏 -->
         <div class="layui-side"></div>
         <!-- 主体部分 -->
-        <div class="layui-body" style="background-color: rgb(244,249,250);">
+        <div class="layui-body">
             <div class="layui-tab" lay-allowClose="true" lay-filter="admin-pagetabs">
                 <ul class="layui-tab-title"></ul>
                 <div class="layui-tab-content"></div>
@@ -100,8 +100,8 @@
             </div>
         </div>
         <!-- 底部 
-    <div class="layui-footer">版权所有 &copy; 2019 By <a href="https://www.yeetong.cn" target="_blank">YeeTong.CN</a> 一通无限</div>
-    -->
+        <div class="layui-footer">版权所有 &copy; 2019 By <a href="https://www.yeetong.cn" target="_blank">YeeTong.CN</a> 一通无限</div>
+        -->
         <!-- 手机屏幕遮罩层 -->
         <div class="site-mobile-shade"></div>
     </div>
@@ -122,11 +122,12 @@
             treetable: 'treetable-lay/treetable',
             inputTags: 'inputTags/inputTags',
             ckplayer: 'ckplayer/ckplayer'
-        }).use(['config', 'index', 'element', 'util'], function () {
+        }).use(['config', 'index', 'element', 'util', 'admin'], function () {
             var config = layui.config;
             var index = layui.index;
             var element = layui.element;
             var util = layui.util;
+            var admin = layui.admin;
 
             Pandyle.config({
                 comPath: {
@@ -140,25 +141,27 @@
                 element.render('nav');
                 index.bindEvent();
             });
-
-
-            setInterval(function () {
-                var now = new Date().getTime();
-                var hour = util.digit(util.toDateString(now, "HH"),2)
-                if(hour < 10) {
-                    hour = "0" + hour;
-                }
-                var minute = util.digit(util.toDateString(now, "mm"),2)
-                if(minute < 10) {
-                    minute = "0" + minute;
-                }
-                $("#time-hour").html(hour)
-                $("#time-separator").html("&nbsp;")
-                $("#time-minute").html(minute)
-                setTimeout(function () {
-                    $("#time-separator").html(":")
-                }, 500)
-            }, 1000)
+            
+            admin.req('/time', {}, function(res){
+                var currentSecond = res.timestamp;
+                setInterval(function () {
+                    var now = new Date(++currentSecond * 1000).getTime();
+                    var hour = util.digit(util.toDateString(now, "HH"),2)
+                    if(hour < 10) {
+                        hour = "0" + hour;
+                    }
+                    var minute = util.digit(util.toDateString(now, "mm"),2)
+                    if(minute < 10) {
+                        minute = "0" + minute;
+                    }
+                    $("#time-hour").html(hour)
+                    $("#time-separator").html("&nbsp;")
+                    $("#time-minute").html(minute)
+                    setTimeout(function () {
+                        $("#time-separator").html(":")
+                    }, 500)
+                }, 1000)
+            }, 'POST')
 
         });
     </script>

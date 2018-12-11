@@ -99,6 +99,9 @@
 </div>
 
 <script id="timelineitemtpl" type="text/html">
+    {{# if(d.data.length === 0) { }}
+        <li style="color:#AAA">暂无大事记数据</li>
+    {{# } }}
     {{#  layui.each(d.data, function(index, item){ }}
         <li class="layui-timeline-item">
             <i class="layui-icon {{index==0?'layui-icon-note':'layui-icon-tips'}} layui-timeline-axis"></i>

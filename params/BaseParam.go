@@ -11,6 +11,10 @@ type LoginParam struct {
 	Vcode    string `json:"vcode"`
 }
 
+type Timestamp struct {
+	Timestamp int64 `json:"timestamp"`
+}
+
 type UserInfo struct {
 	UserName string `json:"userName"`
 }
@@ -71,7 +75,7 @@ type GroupParam struct {
 type PersonnelParam struct {
 	BaseToken
 
-	Id          string `json:"id"`
+	Id            string `json:"id"`
 	Name          string `json:"name"`
 	Code          string `json:"code"`
 	Sex           string `json:"sex"`
@@ -94,25 +98,22 @@ type PersonnelParam struct {
 	Post          string `json:"post"`
 }
 
-
-
 type MemorabiliaParam struct {
 	BaseToken
 
-	Uuid          string `json:"uuid"`
+	Uuid string `json:"uuid"`
 
-	Title          string `json:"title"`
-	Content           string `json:"content"`
-	Happentime      string `json:"happentime"`
-	Prouuid          string `json:"prouuid"`
+	Title      string `json:"title"`
+	Content    string `json:"content"`
+	Happentime string `json:"happentime"`
+	Prouuid    string `json:"prouuid"`
 }
-
 
 type MemorabiliaPicParam struct {
 	BaseToken
 
-	Id	string `json:"id"`
-	Pic string `json:"pic"`
-	Title string `json:"title"`
+	Id      string `json:"id"`
+	Pic     string `json:"pic"`
+	Title   string `json:"title"`
 	Sortnum string `json:"sortnum"`
 }

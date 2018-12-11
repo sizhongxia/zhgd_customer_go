@@ -4,6 +4,7 @@ import (
 	"io"
 	"os"
 	"path"
+	"time"
 	"zhgd/params"
 	"zhgd/utils"
 
@@ -19,6 +20,13 @@ type MainController struct {
 func (this *MainController) Index() {
 	this.TplName = "index.tpl"
 	//this.Redirect("/console", 302)
+}
+
+func (this *MainController) Time() {
+	timestamp := params.Timestamp{}
+	timestamp.Timestamp = time.Now().Unix()
+	this.Data["json"] = &timestamp
+	this.ServeJSON()
 }
 
 func (this *MainController) Login() {

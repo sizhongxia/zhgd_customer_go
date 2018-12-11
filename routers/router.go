@@ -13,6 +13,8 @@ func init() {
 	beego.Router("/login", &MainController{}, "*:Login")
 	beego.Router("/logout", &MainController{}, "*:Logout")
 
+	beego.Router("/time", &MainController{}, "*:Time")
+
 	// Api
 	beego.Router("/loginaction", &MainController{}, "POST:LoginAction")
 	beego.Router("/api/user/info", &MainController{}, "POST:UserInfo")
