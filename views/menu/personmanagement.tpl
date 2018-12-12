@@ -1,6 +1,6 @@
 <style>
     .personmanagement-left {
-        width: 4.4rem;
+        width: 6.8rem;
         height: 100%;
         float: left;
         overflow-y: auto;
@@ -47,22 +47,62 @@
         var admin = layui.admin;
         var carousel = layui.carousel;
 
+
+        // function initFontSize() {
+
+        // }
+
+        // initFontSize()
+        // $(window).resize(initFontSize)
+
+        var doResizeTimer = false;
         function initHeight() {
+            var rate = 100 / 1920;
+            var consoleBoxWidth = $('#console-box').width();
+            console.info(consoleBoxWidth)
+            var remw;
+            if (consoleBoxWidth <= 1000) {
+                remw = 1000 * rate;
+            } else {
+                remw = consoleBoxWidth * rate;
+            }
+            $('html').css('font-size', remw + "px");
+
             var windowHeight = window.innerHeight;
             $('#console-box').css('height', windowHeight - 80 + "px");
+            if (doResizeTimer) {
+                window.clearTimeout(doResizeTimer);
+            }
+            doResizeTimer = window.setTimeout(function () {
+                initWorktypeStatistics();
+                initBaseCensuss();
+            }, 800);
         }
-        initHeight()
-        $(window).resize(initHeight);
 
-        (function initWorktypeStatistics() {
+        initHeight()
+
+        $("#console-box").resize(function () {
+            initHeight();
+        });
+
+
+
+        var PmChartC01 = null;
+        var PmChartC02 = null;
+        var PmChartC03 = null;
+        var PmChartC04 = null;
+
+        function initWorktypeStatistics() {
             admin.req('/api/personnel/statistics/worktype', {}, function (res) {
-                var chart = new window.G2.Chart({
+                PmChartC01 && PmChartC01.destroy()
+                PmChartC01 = null;
+                PmChartC01 = new window.G2.Chart({
                     container: 'PmChartC01',
                     forceFit: true,
-                    height: 220,
+                    height: 160,
                     padding: [20, 0, 30, 0]
                 });
-                var userView = chart.view();
+                var userView = PmChartC01.view();
                 userView.source(res.data, {
                     'value': {
                         alias: '人数'
@@ -75,45 +115,60 @@
                         return '<span class="g2-label-item"><p class="g2-label-item-value">' + a.value + '</p></div>';
                     }
                 }).size(36);
-                chart.render();
+                PmChartC01.render();
             }, 'POST')
-        })(this)
+        }
 
+        initWorktypeStatistics();
+        initBaseCensuss();
 
-        admin.req('/api/personnel/statistics/basecensuss', {}, function (res) {
-            initBaseCensussAge(res.data.ages)
-            initBaseCensussSex(res.data.sexs)
-            initBaseCensussArea(res.data.areas)
-        }, 'POST')
+        function initBaseCensuss() {
+            admin.req('/api/personnel/statistics/basecensuss', {}, function (res) {
+                initBaseCensussAge(res.data.ages)
+                initBaseCensussSex(res.data.sexs)
+                initBaseCensussArea(res.data.areas)
+            }, 'POST')
+        }
 
         function initBaseCensussSex(_sexData) {
-            var chart = new G2.Chart({
+            PmChartC04 && PmChartC04.destroy()
+            PmChartC04 = null;
+            PmChartC04 = new G2.Chart({
                 container: 'PmChartC04',
                 forceFit: true,
-                height: 200,
-                padding: [20, 0, 50, 0]
+                height: 220,
+                padding: { top: 10, right: 10, bottom: 10, left: 10 }
             });
-
-            chart.source(_sexData);
-            chart.coord('theta', {
-                innerRadius: 0.75
+            PmChartC04.source(_sexData, {
+                value: {
+                    formatter: function formatter(val) {
+                        val = val + '%';
+                        return val;
+                    }
+                }
             });
-            chart.tooltip({
-                showTitle: false
+            PmChartC04.coord('theta', {
+                radius: 0.7,
+                innerRadius: 0.56
             });
-            chart.intervalStack().position('value').color('name', ['#0a9afe', '#f0657d']).shape('sliceShape');
-
-            chart.render();
+            PmChartC04.intervalStack().position('value').color('name', ['#0a9afe', '#f0657d']).label('value', {
+                formatter: function formatter(val, item) {
+                    return item.point.name + ':' + val;
+                }
+            });
+            PmChartC04.render();
         }
 
         function initBaseCensussAge(_ageData) {
-            var chart = new window.G2.Chart({
+            PmChartC03 && PmChartC03.destroy()
+            PmChartC03 = null;
+            PmChartC03 = new window.G2.Chart({
                 container: 'PmChartC03',
                 forceFit: true,
-                height: 220,
+                height: 200,
                 padding: [20, 0, 30, 0]
             });
-            var userView = chart.view();
+            var userView = PmChartC03.view();
             userView.source(_ageData, {
                 'value': {
                     alias: '人数'
@@ -126,7 +181,7 @@
                     return '<span class="g2-label-item"><p class="g2-label-item-value">' + a.value + '</p></div>';
                 }
             }).size(36);
-            chart.render();
+            PmChartC03.render();
         }
 
 
@@ -191,7 +246,7 @@
                         refreshAreaNode(areaNode);
 
                         setTimeout(nicePageScroll)
-                        
+
                         if (callback) {
                             callback(null, areaNode);
                         }
@@ -218,33 +273,29 @@
                 switch2AreaNode(100000);
             });
 
-            // 开始使用 G2 绘制地图
-            var provinceChart = void 0;
-
             function renderG2Map(areaNode) {
                 var adcode = areaNode.getAdcode();
                 var geoJSON = areaNode.getSubFeatures(); // 获取 geoJSON 数据
                 var name = areaNode.getName();
 
-                provinceChart && provinceChart.destroy();
-                provinceChart = null;
-
                 var dv = processData(geoJSON);
 
+                PmChartC02 && PmChartC02.destroy()
+                PmChartC02 = null;
 
-                provinceChart = new G2.Chart({
+                PmChartC02 = new G2.Chart({
                     container: 'PmChartC02',
                     forceFit: true,
                     height: 480,
                     padding: 0
                 });
-                provinceChart.source(dv);
-                provinceChart.axis(false);
-                provinceChart.tooltip({
+                PmChartC02.source(dv);
+                PmChartC02.axis(false);
+                PmChartC02.tooltip({
                     showTitle: false
                 });
 
-                var userView = provinceChart.view();
+                var userView = PmChartC02.view();
                 userView.source(dv, {
                     'cvalue': {
                         alias: '人数'
@@ -257,7 +308,7 @@
                     stroke: '#FEFEFE',
                     lineWidth: 1
                 }).color('value', '#E3EDF3-#BAE7FF-#1890FF-#0050B3');
-                provinceChart.render();
+                PmChartC02.render();
             }
 
             function processData(geoJSON) {
@@ -292,7 +343,9 @@
                 cursorborder: "1px solid #ddd",
                 horizrailenabled: false,
                 cursordragontouch: true,
-            });
+                autohidemode: 'cursor',
+                boxzoom: false,
+            }).resize();
         }
     });
 </script>

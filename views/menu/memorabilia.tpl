@@ -155,6 +155,38 @@
         var admin = layui.admin;
         var laytpl = layui.laytpl;
 
+
+        // var doResizeTimer = false;
+        function initHeight() {
+            var rate = 100 / 1920;
+            var consoleBoxWidth = $('#console-box').width();
+            console.info(consoleBoxWidth)
+            var remw;
+            if (consoleBoxWidth <= 1000) {
+                remw = 1000 * rate;
+            } else {
+                remw = consoleBoxWidth * rate;
+            }
+            $('html').css('font-size', remw + "px");
+
+            var windowHeight = window.innerHeight;
+            $('#console-box').css('height', windowHeight - 80 + "px");
+
+            // if (doResizeTimer) {
+            //     window.clearTimeout(doResizeTimer);
+            // }
+            // doResizeTimer = window.setTimeout(function () {
+            //     initWorktypeStatistics();
+            //     initBaseCensuss();
+            // }, 800);
+        }
+
+        initHeight()
+
+        $("#console-box").resize(function () {
+            initHeight();
+        });
+
         admin.req("/api/memorabilia/list", {}, function (res) {
             if (res.code == 200) {
                 var view = document.getElementById('timelinelist');
@@ -175,12 +207,12 @@
             cursorborder: "1px solid #ddd"
         });
 
-        function initHeight() {
-            var windowHeight = window.innerHeight;
-            $('#console-box').css('height', windowHeight - 80 + "px");
-        }
-        initHeight()
-        $(window).resize(initHeight)
+        // function initHeight() {
+        //     var windowHeight = window.innerHeight;
+        //     $('#console-box').css('height', windowHeight - 80 + "px");
+        // }
+        // initHeight()
+        // $(window).resize(initHeight)
 
         function loadDetail(id) {
             admin.req("/api/memorabilia/detail", { id: id }, function (res) {

@@ -159,30 +159,22 @@ layui.define(['config', 'admin', 'layer', 'laytpl', 'element', 'form'], function
         Q.go(layId);
     });
 
-    function initFontSize() {
-        var rate = 100 / 1920;
-        var rateh = 100 / 1080;
-        var windowWidth = window.innerWidth;
-        var windowHeight = window.innerHeight;
-        var remw, remh;
-        if (windowWidth <= 1422) {
-            remw = 1422 * rate;
-        } else {
-            remw = windowWidth * rate;
-        }
-        if (windowHeight <= 800) {
-            remh = 800 * rate;
-        } else {
-            remh = windowHeight * rateh;
-        }
-        if (remw < remh) {
-            remw = remh
-        }
-        $('html').css('font-size', remw + "px");
-    }
+    // function initFontSize() {
+    //     var rate = 100 / 1920;
+    //     var rateh = 100 / 1080;
+    //     var windowWidth = window.innerWidth;
+    //     var windowHeight = window.innerHeight;
+    //     var remw, remh;
+    //     if (windowWidth <= 1280) {
+    //         remw = 1280 * rate;
+    //     } else {
+    //         remw = windowWidth * rate;
+    //     }
+    //     $('html').css('font-size', remw + "px");
+    // }
 
-    initFontSize()
-    $(window).resize(initFontSize)
+    // initFontSize()
+    // $(window).resize(initFontSize)
 
 
     exports('index', index);
