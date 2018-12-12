@@ -9,6 +9,7 @@ import (
 func init() {
 
 	beego.Router("/", &MainController{}, "*:Index")
+	beego.Router("/error", &MainController{}, "*:ErrPage")
 
 	beego.Router("/login", &MainController{}, "*:Login")
 	beego.Router("/logout", &MainController{}, "*:Logout")

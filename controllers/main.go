@@ -16,19 +16,23 @@ import (
 type MainController struct {
 	beego.Controller
 }
-
+// 主页
 func (this *MainController) Index() {
-	this.TplName = "index.tpl"
-	//this.Redirect("/console", 302)
+	//this.TplName = "index.tpl"
+	this.Redirect("/console", 302)
 }
-
+// 请求错误页面
+func (this *MainController) ErrPage() {
+	this.TplName = "error/index.tpl"
+}
+// 获取服务器时间
 func (this *MainController) Time() {
 	timestamp := params.Timestamp{}
 	timestamp.Timestamp = time.Now().Unix()
 	this.Data["json"] = &timestamp
 	this.ServeJSON()
 }
-
+// 登陆页
 func (this *MainController) Login() {
 	cutoken := this.GetSession("cutoken")
 	if cutoken != nil {
@@ -41,7 +45,7 @@ func (this *MainController) Login() {
 	}
 	this.TplName = "login.tpl"
 }
-
+// 登陆处理
 func (this *MainController) LoginAction() {
 	flash := beego.NewFlash()
 	param := params.LoginParam{}
@@ -82,14 +86,14 @@ func (this *MainController) LoginAction() {
 
 	this.Redirect("/console", 302)
 }
-
+// 用户信息
 func (this *MainController) UserInfo() {
 	userInfo := params.UserInfo{}
 	userInfo.UserName = this.GetSession("cuname").(string)
 	this.Data["json"] = &userInfo
 	this.ServeJSON()
 }
-
+// 用户（授权）菜单
 func (this *MainController) UserMenus() {
 	token := params.BaseToken{}
 	token.Uid = this.GetSession("cutoken").(string)
@@ -98,7 +102,7 @@ func (this *MainController) UserMenus() {
 	this.Data["json"] = res
 	this.ServeJSON()
 }
-
+// 退出登陆，清除session
 func (this *MainController) Logout() {
 	cutoken := this.GetSession("cutoken")
 	if cutoken != nil {
@@ -143,7 +147,7 @@ func (this *MainController) UploadPersonnelPhoto() {
 	this.ServeJSON()
 }
 
-// 上传用户头像
+// 上传大事记图片
 func (this *MainController) UploadMemorabiliaPics() {
 	er := params.ErrorResult{}
 
