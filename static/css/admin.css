@@ -414,6 +414,10 @@ html {
 /** //消息列表样式结束 */
 
 /** 主体部分标题样式 */
+.layui-card-header {
+    color: #122135;
+    background-color: #cce2f3;
+}
 .layui-card-header .header-title {
     display: inline;
     font-size: 16px;
