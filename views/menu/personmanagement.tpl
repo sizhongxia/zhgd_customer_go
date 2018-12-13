@@ -29,6 +29,63 @@
         background: rgba(0, 0, 0, 0.02);
     }
 
+    #inoutbox {
+        overflow: hidden;
+    }
+
+    #inoutbox .inoutItem {
+        width: 100%;
+        height: 0.88rem;
+        margin-top: 6px;
+        border-bottom: 1px solid #cce2f3;
+    }
+
+    #inoutbox .inoutItem .inoutItemPic {
+        width: 0.6rem;
+        height: 0.6rem;
+        float: left;
+        margin: 0.09rem;
+        border-radius: 0.4rem;
+        background-color: #cce2f3;
+        color: #fff;
+        overflow: hidden;
+        text-align: center;
+        font-family: inherit;
+    }
+
+    #inoutbox .inoutItem .inoutItemPic span {
+        font-size: 0.3rem;
+        line-height: 0.6rem;
+        font-family: inherit
+    }
+
+    #inoutbox .inoutItem .rightBox {
+        height: 0.8rem;
+        margin-left: 1rem;
+    }
+
+    #inoutbox .inoutItem .rightBox .title {
+        height: 0.45rem;
+        line-height: 0.45rem;
+    }
+
+    #inoutbox .inoutItem .rightBox .title .time {
+        font-weight: bold;
+        font-size: 0.26rem;
+    }
+
+    #inoutbox .inoutItem .rightBox .title .type {
+        font-size: 0.22rem;
+    }
+
+    #inoutbox .inoutItem .rightBox .info {
+        height: 0.35rem;
+        line-height: 0.35rem;
+        font-size: 0.2rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
     .admin-carousel .layui-carousel-ind {
         position: absolute;
         top: -41px;
@@ -54,19 +111,19 @@
 
     <div class="personmanagement-left">
         <div class="layui-card">
-            <div class="layui-card-header">劳务工种人数统计</div>
+            <div class="layui-card-header">在册劳务人员工种统计</div>
             <div class="layui-card-body">
                 <div id="PmChartC01"></div>
             </div>
         </div>
         <div class="layui-card">
-            <div class="layui-card-header">人员年龄分布</div>
+            <div class="layui-card-header">在册人员年龄分布</div>
             <div class="layui-card-body">
                 <div id="PmChartC03"></div>
             </div>
         </div>
         <div class="layui-card">
-            <div class="layui-card-header">人员地域分布</div>
+            <div class="layui-card-header">在册人员地域分布</div>
             <div class="layui-card-body">
                 <div id="PmChartC02"></div>
             </div>
@@ -75,29 +132,40 @@
     <div class="personmanagement-content">
         <div class="personmanagement-content-left">
             <div class="layui-card">
-                <div class="layui-card-header">在场人员信息</div>
+                <div class="layui-card-header">在场劳务人员工种统计</div>
                 <div class="layui-card-body">
-                    <div style="width: 100%;height: 3.2rem;"></div> 
                 </div>
             </div>
             <div class="layui-card">
-                <div class="layui-card-header">在场人员信息</div>
+                <div class="layui-card-header">在场管理人员统计</div>
                 <div class="layui-card-body">
-                    <div style="width: 100%;height: 3.2rem;"></div> 
                 </div>
             </div>
             <div class="layui-card">
-                <div class="layui-card-header">在场人员信息</div>
+                <div class="layui-card-header">在册单位人员统计</div>
                 <div class="layui-card-body">
-                    <div style="width: 100%;height: 3.2rem;"></div> 
                 </div>
             </div>
         </div>
         <div class="personmanagement-content-right">
             <div class="layui-card">
-                <div class="layui-card-header">进出场动态</div>
+                <div class="layui-card-header">今日进出场动态</div>
                 <div class="layui-card-body">
-                   <div style="width: 100%;height: 3.2rem;"></div> 
+                    <div id="inoutbox">
+                        <div class="inoutItem">
+                            <div class="inoutItemPic">
+                                <span>司</span>
+                            </div>
+                            <div class="rightBox">
+                                <div class="title">
+                                    <span class="time">08:20</span>&nbsp;<span class="type">进场</span>
+                                </div>
+                                <div class="info">
+                                    <nobr>司仲夏&nbsp;工种1&nbsp;北京一通无限科技有限公司</nobr>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="layui-card">
@@ -106,6 +174,7 @@
                     <div id="PmChartC04"></div>
                 </div>
             </div>
+            <!--
             <div class="layui-card">
                 <div class="layui-card-header">文档</div>
                 <div class="layui-card-body">
@@ -120,31 +189,31 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>-->
         </div>
     </div>
 </div>
 
 <script>
-    layui.use(['util', 'config', 'admin', 'carousel'], function () {
-        var config = layui.config;
-        var layer = layui.layer;
-        var util = layui.util;
+    layui.use(['admin'], function () {
+        // var config = layui.config;//'config', 
+        // var layer = layui.layer;
+        // var util = layui.util;// 'util', 
         var admin = layui.admin;
-        var element = layui.element;
-        var carousel = layui.carousel;
-        var device = layui.device();
+        // var element = layui.element;
+        // var carousel = layui.carousel; //, 'carousel'
+        // var device = layui.device();
 
 
-        carousel.render({
-            elem: '.layui-carousel',
-            width: '100%',
-            height: '60px',
-            arrow: 'none',
-            autoplay: true,
-            trigger: device.ios || device.android ? 'click' : 'hover',
-            anim: 'fade'
-        });
+        // carousel.render({
+        //     elem: '.layui-carousel',
+        //     width: '100%',
+        //     height: '60px',
+        //     arrow: 'none',
+        //     autoplay: true,
+        //     trigger: device.ios || device.android ? 'click' : 'hover',
+        //     anim: 'fade'
+        // });
 
         // function initFontSize() {
 
@@ -165,16 +234,24 @@
             } else {
                 remw = consoleBoxWidth * rate;
             }
+            // 设置字体基础大小
             $('html').css('font-size', remw + "px");
 
+            // 主面板高度及设置
             consoleBoxHeight = window.innerHeight - 80;
             $('#console-box').css('height', consoleBoxHeight + "px");
+
+            // 右侧 进出场高度
+            $('#inoutbox').css('height', consoleBoxHeight * 0.66 - 150);
+
+            // 避免频繁刷新
             if (doResizeTimer) {
                 window.clearTimeout(doResizeTimer);
             }
             // if(Math.abs(consoleBoxWidth - currentWidth) > 10) {
             // currentWidth = consoleBoxWidth;
             doResizeTimer = window.setTimeout(function () {
+                // 更新数据
                 initWorktypeStatistics();
                 initBaseCensuss();
             }, 400);
@@ -185,17 +262,20 @@
 
         // console.info(consoleBoxHeight)
 
-        $("#console-box").resize(initHeight);
+        $(".layui-body").resize(initHeight);
         //$(window).resize(initHeight)
 
 
-
+        // 所有工种图表
         var PmChartC01 = null;
+        // 人员省份地图
         var PmChartC02 = null;
+        // 人员年龄统计图表
         var PmChartC03 = null;
+        // 人员性别比例图表
         var PmChartC04 = null;
-
-
+        // 渲染方式
+        var renderer = 'canvas'; //'canvas' or 'svg';
 
         var loadingWorktypeStatistics = false;
         function initWorktypeStatistics() {
@@ -205,10 +285,11 @@
             loadingWorktypeStatistics = true;
             admin.req('/api/personnel/statistics/worktype', {}, function (res) {
                 PmChartC01 && PmChartC01.destroy()
+                $('#PmChartC01').empty();
                 PmChartC01 = null;
                 PmChartC01 = new window.G2.Chart({
                     container: 'PmChartC01',
-                    renderer: 'svg',
+                    renderer: renderer,
                     forceFit: true,
                     height: consoleBoxHeight * 0.25 - 36,
                     padding: [20, 0, 30, 0]
@@ -251,10 +332,11 @@
 
         function initBaseCensussAge(_ageData) {
             PmChartC03 && PmChartC03.destroy()
+            $('#PmChartC03').empty();
             PmChartC03 = null;
             PmChartC03 = new window.G2.Chart({
                 container: 'PmChartC03',
-                renderer: 'svg',
+                renderer: renderer,
                 forceFit: true,
                 height: consoleBoxHeight * 0.25 - 36,
                 padding: [20, 0, 30, 0]
@@ -277,12 +359,13 @@
 
         function initBaseCensussSex(_sexData) {
             PmChartC04 && PmChartC04.destroy()
+            $('#PmChartC04').empty();
             PmChartC04 = null;
             PmChartC04 = new G2.Chart({
                 container: 'PmChartC04',
-                renderer: 'svg',
+                renderer: renderer,
                 forceFit: true,
-                height: consoleBoxHeight * 0.4 - 81,
+                height: consoleBoxHeight * 0.34,
                 padding: { top: 10, right: 10, bottom: 10, left: 10 }
             });
             PmChartC04.source(_sexData, {
@@ -298,8 +381,8 @@
                 innerRadius: 0.56
             });
             PmChartC04.intervalStack().position('value').color('name', ['#0a9afe', '#f0657d']).label('value', {
-                formatter: function formatter(val, item) {
-                    return item.point.name + ':' + val;
+                formatter: function formatter(text, item, index) {
+                    return item.point.name + ':' + text;
                 }
             });
             PmChartC04.render();
@@ -403,10 +486,11 @@
 
                 PmChartC02 && PmChartC02.destroy()
                 PmChartC02 = null;
+                $('#PmChartC02').empty();
 
                 PmChartC02 = new G2.Chart({
                     container: 'PmChartC02',
-                    renderer: 'svg',
+                    renderer: renderer,
                     forceFit: true,
                     height: consoleBoxHeight * 0.5 - 78,
                     padding: 0
@@ -414,7 +498,10 @@
                 PmChartC02.source(dv);
                 PmChartC02.axis(false);
                 PmChartC02.tooltip({
-                    showTitle: false
+                    showTitle: false,
+                    position: 'left',
+                    follow: false,
+                    enterable: true,
                 });
 
                 var userView = PmChartC02.view();
@@ -431,6 +518,9 @@
                     lineWidth: 1
                 }).color('value', '#E3EDF3-#BAE7FF-#1890FF-#0050B3');
                 PmChartC02.render();
+                //setTimeout(function(){
+                //PmChartC02.downloadImage('人员省份分布');
+                //}, 1000)
             }
 
             function processData(geoJSON) {
@@ -469,5 +559,20 @@
         //         boxzoom: false,
         //     }).resize();
         // }
+        
+        var inoutboxNiceScroll = $("#inoutbox").niceScroll({
+            cursorwidth: "0px",
+            cursorborder: "none",
+            cursoropacitymax: 0,
+            horizrailenabled: false,
+            touchbehavior: true,
+            cursordragontouch: true,
+            autohidemode: 'hidden',
+            boxzoom: false,
+        });
+        inoutboxNiceScroll.resize();
+        setInterval(function() {
+            inoutboxNiceScroll.doScrollTop(0);
+        }, 30000)
     });
 </script>
