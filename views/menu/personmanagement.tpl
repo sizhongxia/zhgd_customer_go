@@ -56,7 +56,7 @@
     #inoutbox .inoutItem .inoutItemPic span {
         font-size: 0.3rem;
         line-height: 0.6rem;
-        font-family: inherit
+        font-family: "italic", Helvetica, Arial, "Heiti SC", "Microsoft YaHei"
     }
 
     #inoutbox .inoutItem .rightBox {
