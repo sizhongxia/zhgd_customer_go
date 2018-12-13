@@ -1,6 +1,6 @@
 <style>
     .personmanagement-left {
-        width: 6.8rem;
+        width: 6rem;
         height: 100%;
         float: left;
         overflow: hidden;
@@ -8,13 +8,13 @@
     }
 
     .personmanagement-content {
-        margin-left: 6.8rem;
-        margin-left: calc(6.8rem + 15px);
+        margin-left: 6rem;
+        margin-left: calc(6rem + 15px);
         height: 100%;
     }
 
     .personmanagement-content-left {
-        width: 66%;
+        width: 60%;
         height: 100%;
         float: left;
         overflow-y: auto;
@@ -23,8 +23,8 @@
     }
 
     .personmanagement-content-right {
-        margin-left: 66%;
-        margin-left: calc(66% + 15px);
+        margin-left: 60%;
+        margin-left: calc(60% + 15px);
         height: 100%;
         background: rgba(0, 0, 0, 0.02);
     }
